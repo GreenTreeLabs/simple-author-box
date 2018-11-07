@@ -140,11 +140,13 @@ class Simple_Author_Box {
 		if ( '' !== $custom_profile_image && true !== $args['force_default'] ) {
 
 			$avatar = sprintf(
-				"<img alt='%s' src='%s' srcset='%s' class='%s' %s/>",
+				"<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
 				esc_attr( $args['alt'] ),
 				esc_url( $custom_profile_image ),
 				esc_url( $custom_profile_image ) . ' 2x',
 				esc_attr( join( ' ', $class ) ),
+				(int) $args['height'],
+				(int) $args['width'],
 				$args['extra_attr']
 			);
 		}

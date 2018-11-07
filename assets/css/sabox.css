@@ -6,6 +6,5 @@
 	opacity: 1;
 }
 img.sab-custom-avatar {
-	max-width: 96px;
-	max-height: 96px;
+    height: auto;
 }

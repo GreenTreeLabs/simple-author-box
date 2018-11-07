@@ -4,7 +4,7 @@ Tags: author box, responsive author box, author profile fields, author social ic
 Requires at least: 4.6
 Requires PHP: 5.6
 Tested up to: 4.9
-Stable tag: trunk
+Stable tag: 2.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -78,6 +78,14 @@ Or you can give back by recommending this amazing plugin to your friends!
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.1.3 = 
+* Fixed error on footer.
+* Fixed profile image in dashboard ( https://github.com/MachoThemes/simple-author-box/issues/97 )
+* Fixed profile image in comments ( https://github.com/MachoThemes/simple-author-box/issues/96 )
+
+= 2.1.2 = 
+* Added alt tag for custom profile image.
 
 = 2.1.1 = 
 * Minor fixes & version bump
