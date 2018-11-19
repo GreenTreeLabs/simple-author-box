@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  */
 class Simple_Author_Box_Previewer {
 
@@ -40,7 +40,7 @@ class Simple_Author_Box_Previewer {
 	);
 
 	private $options;
-	
+
 	function __construct() {
 
 		// Output Author Box
@@ -51,13 +51,17 @@ class Simple_Author_Box_Previewer {
 
 	}
 
-	public function admin_style_and_scripts( $hook ){
+	public function admin_style_and_scripts( $hook ) {
 
 		// loaded only on plugin page
 		if ( 'toplevel_page_simple-author-box-options' == $hook ) {
 
 			wp_enqueue_script( 'sabox-webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', array(), false, true );
-			wp_enqueue_script( 'sabox-previewer', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sab-preview.js', array( 'jquery', 'backbone', 'sabox-webfont' ), false, true );
+			wp_enqueue_script( 'sabox-previewer', SIMPLE_AUTHOR_BOX_ASSETS . 'js/sab-preview.js', array(
+				'jquery',
+				'backbone',
+				'sabox-webfont'
+			), false, true );
 		}
 
 	}
@@ -106,14 +110,14 @@ class Simple_Author_Box_Previewer {
 		// author box clearfix
 		echo '<div class="clearfix"></div>';
 
-		$social_links = Simple_Author_Box_Helper::$social_icons;
+		$social_links               = Simple_Author_Box_Helper::$social_icons;
 		$social_links['user_email'] = '#';
 
 		$extra_class = ' sab-show-simple';
 		if ( '1' == $this->options['sab_colored'] ) {
 			if ( '1' == $this->options['sab_icons_style'] ) {
 				$extra_class = ' sab-show-circle';
-			}else{
+			} else {
 				$extra_class = ' sab-show-square';
 			}
 		}
@@ -134,8 +138,8 @@ class Simple_Author_Box_Previewer {
 		$simple_icons_html = '';
 		$circle_icons_html = '';
 		$square_icons_html = '';
-		$link = '<a href="#" class="%s">%s</a>';
-		
+		$link              = '<a href="#" class="%s">%s</a>';
+
 		foreach ( $social_links as $social_platform => $social_link ) {
 
 			$simple_icons_html .= sprintf( $link, 'saboxplugin-icon-grey', Simple_Author_Box_Social::icon_to_svg( $social_platform, 'simple' ) );
@@ -154,15 +158,15 @@ class Simple_Author_Box_Previewer {
 		echo '<div class="note"><strong>Note:</strong> By default our Author Box will take the current font family and color from your theme. Basically if you don\'t select a font or a color from the plugin\'s settings the font and color of the Author Box will be different on the front-end than in the previewer.</div>';
 	}
 
-	private function generate_inline_css(){
+	private function generate_inline_css() {
 
-		$padding_top_bottom  = Simple_Author_Box_Helper::get_option( 'sab_box_padding_top_bottom' );
-		$padding_left_right  = Simple_Author_Box_Helper::get_option( 'sab_box_padding_left_right' );
-		$sabox_name_size     = Simple_Author_Box_Helper::get_option( 'sab_box_name_size' );
-		$sabox_desc_size     = Simple_Author_Box_Helper::get_option( 'sab_box_desc_size' );
-		$sabox_icon_size     = Simple_Author_Box_Helper::get_option( 'sab_box_icon_size' );
-		$sabox_options       = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
-		$sabox_web_size      = Simple_Author_Box_Helper::get_option( 'sab_box_web_size' );
+		$padding_top_bottom = Simple_Author_Box_Helper::get_option( 'sab_box_padding_top_bottom' );
+		$padding_left_right = Simple_Author_Box_Helper::get_option( 'sab_box_padding_left_right' );
+		$sabox_name_size    = Simple_Author_Box_Helper::get_option( 'sab_box_name_size' );
+		$sabox_desc_size    = Simple_Author_Box_Helper::get_option( 'sab_box_desc_size' );
+		$sabox_icon_size    = Simple_Author_Box_Helper::get_option( 'sab_box_icon_size' );
+		$sabox_options      = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
+		$sabox_web_size     = Simple_Author_Box_Helper::get_option( 'sab_box_web_size' );
 
 		$style = '.saboxplugin-wrap{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;border:1px solid #eee;width:100%;clear:both;display:block;overflow:hidden;word-wrap:break-word;position:relative}.saboxplugin-wrap .saboxplugin-gravatar{float:left;padding:20px}.saboxplugin-wrap .saboxplugin-gravatar img{max-width:100px;height:auto}.saboxplugin-wrap .saboxplugin-authorname{font-size:18px;line-height:1;margin:20px 0 0 20px;display:block}.saboxplugin-wrap .saboxplugin-authorname a{text-decoration:none}.saboxplugin-wrap .saboxplugin-authorname a:focus{outline:0}.saboxplugin-wrap .saboxplugin-desc{display:block;margin:5px 20px}.saboxplugin-wrap .saboxplugin-desc a{text-decoration:underline}.saboxplugin-wrap .saboxplugin-desc p{margin:5px 0 12px}.saboxplugin-wrap .saboxplugin-web{margin:0 20px 15px;text-align:left}.saboxplugin-wrap .sab-web-position{text-align:right}.saboxplugin-wrap .saboxplugin-web a{color:#ccc;text-decoration:none}.saboxplugin-wrap .saboxplugin-socials{position:relative;display:block;background:#fcfcfc;padding:5px;border-top:1px solid #eee}.saboxplugin-wrap .saboxplugin-socials a svg{width:20px;height:20px}.saboxplugin-wrap .saboxplugin-socials a svg .st2{fill:#fff}.saboxplugin-wrap .saboxplugin-socials a svg .st1{fill:rgba(0,0,0,.3)}.saboxplugin-wrap .saboxplugin-socials a:hover{opacity:.8;-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s;box-shadow:none!important;-webkit-box-shadow:none!important}.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-color{box-shadow:none;padding:0;border:0;-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s;display:inline-block;color:#fff;font-size:0;text-decoration:inherit;margin:5px;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0;overflow:hidden}.saboxplugin-wrap .saboxplugin-socials .saboxplugin-icon-grey{text-decoration:inherit;box-shadow:none;position:relative;display:-moz-inline-stack;display:inline-block;vertical-align:middle;zoom:1;margin:10px 5px;color:#444}.clearfix:after,.clearfix:before{content:\' \';display:table;line-height:0;clear:both}.ie7 .clearfix{zoom:1}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-twitch{border-color:#38245c}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-addthis{border-color:#e91c00}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-behance{border-color:#003eb0}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-delicious{border-color:#06c}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-deviantart{border-color:#036824}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-digg{border-color:#00327c}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-dribbble{border-color:#ba1655}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-facebook{border-color:#1e2e4f}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-flickr{border-color:#003576}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-github{border-color:#264874}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-google{border-color:#0b51c5}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-googleplus{border-color:#96271a}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-html5{border-color:#902e13}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-instagram{border-color:#1630aa}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-linkedin{border-color:#00344f}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-pinterest{border-color:#5b040e}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-reddit{border-color:#992900}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-rss{border-color:#a43b0a}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-sharethis{border-color:#5d8420}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-skype{border-color:#00658a}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-soundcloud{border-color:#995200}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-spotify{border-color:#0f612c}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-stackoverflow{border-color:#a95009}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-steam{border-color:#006388}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-user_email{border-color:#b84e05}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-stumbleUpon{border-color:#9b280e}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-tumblr{border-color:#10151b}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-twitter{border-color:#0967a0}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-vimeo{border-color:#0d7091}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-windows{border-color:#003f71}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-wordpress{border-color:#0f3647}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-yahoo{border-color:#14002d}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-youtube{border-color:#900}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-xing{border-color:#000202}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-mixcloud{border-color:#2475a0}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-vk{border-color:#243549}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-medium{border-color:#00452c}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-quora{border-color:#420e00}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-meetup{border-color:#9b181c}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-goodreads{border-color:#000}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-snapchat{border-color:#999700}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-500px{border-color:#00557f}.saboxplugin-socials.sabox-colored .saboxplugin-icon-color .sab-mastodont{border-color:#185886}.sabox-plus-item{margin-bottom:20px}@media screen and (max-width:480px){.saboxplugin-wrap{text-align:center}.saboxplugin-wrap .saboxplugin-gravatar{float:none;padding:20px 0;text-align:center;margin:0 auto;display:block}.saboxplugin-wrap .saboxplugin-gravatar img{float:none;display:inline-block;display:-moz-inline-stack;vertical-align:middle;zoom:1}.saboxplugin-wrap .saboxplugin-desc{margin:0 10px 20px;text-align:center}.saboxplugin-wrap .saboxplugin-authorname{text-align:center;margin:10px 0 20px}}body .saboxplugin-authorname a,body .saboxplugin-authorname a:hover{box-shadow:none;-webkit-box-shadow:none}a.sab-profile-edit{font-size:16px!important;line-height:1!important}.sab-edit-settings a,a.sab-profile-edit{color:#0073aa!important;box-shadow:none!important;-webkit-box-shadow:none!important}.sab-edit-settings{margin-right:15px;position:absolute;right:0;z-index:2;bottom:10px;line-height:20px}.sab-edit-settings i{margin-left:5px}.saboxplugin-socials{line-height:1!important}.rtl .saboxplugin-wrap .saboxplugin-gravatar{float:right}.rtl .saboxplugin-wrap .saboxplugin-authorname{display:flex;align-items:center}.rtl .saboxplugin-wrap .saboxplugin-authorname .sab-profile-edit{margin-right:10px}.rtl .sab-edit-settings{right:auto;left:0}';
 
@@ -181,7 +185,7 @@ class Simple_Author_Box_Previewer {
 		// Avatar hover effect
 		$style .= '.saboxplugin-wrap .saboxplugin-gravatar.sab-round-image.sab-rotate-img img {-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;}';
 		$style .= '.saboxplugin-wrap .saboxplugin-gravatar.sab-round-image.sab-rotate-img img:hover {-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);}';
-		
+
 		// Background color of social icons bar
 		if ( '' != $sabox_options['sab_box_icons_back'] ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-socials{background-color:' . esc_html( $sabox_options['sab_box_icons_back'] ) . ';}';
@@ -198,7 +202,7 @@ class Simple_Author_Box_Previewer {
 		if ( '' != $sabox_options['sab_box_author_a_color'] ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-desc a, .saboxplugin-wrap .saboxplugin-desc  {color:' . esc_html( $sabox_options['sab_box_author_a_color'] ) . ';}';
 		}
-		
+
 		// Author name color
 		if ( '' != $sabox_options['sab_box_author_color'] ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-authorname a {color:' . esc_html( $sabox_options['sab_box_author_color'] ) . ';}';
@@ -212,23 +216,23 @@ class Simple_Author_Box_Previewer {
 		// Author name font family
 		$sab_box_name_font = Simple_Author_Box_Helper::get_option( 'sab_box_name_font' );
 		if ( 'None' != $sab_box_name_font ) {
-			$style           .= '.saboxplugin-wrap .saboxplugin-authorname {font-family:"' . esc_html( $sab_box_name_font ) . '";}';
+			$style .= '.saboxplugin-wrap .saboxplugin-authorname {font-family:"' . esc_html( $sab_box_name_font ) . '";}';
 		}
 
 		// Author description font family
 		$sab_box_desc_font = Simple_Author_Box_Helper::get_option( 'sab_box_desc_font' );
 		if ( 'None' != $sab_box_name_font ) {
-			$style           .= '.saboxplugin-wrap .saboxplugin-desc {font-family:' . esc_html( $sab_box_desc_font ) . ';}';
+			$style .= '.saboxplugin-wrap .saboxplugin-desc {font-family:' . esc_html( $sab_box_desc_font ) . ';}';
 		}
 
 		// Author web font family
 		$sab_box_web_font = Simple_Author_Box_Helper::get_option( 'sab_box_web_font' );
 		if ( '1' == $sabox_options['sab_web'] && 'None' != $sab_box_web_font ) {
-			$style          .= '.saboxplugin-wrap .saboxplugin-web {font-family:"' . esc_html( $sab_box_web_font ) . '";}';
+			$style .= '.saboxplugin-wrap .saboxplugin-web {font-family:"' . esc_html( $sab_box_web_font ) . '";}';
 		}
 
 		// Author description font style
-		if ( '1' == $sabox_options['sab_desc_style'] ) {
+		if ( isset( $sabox_options['sab_desc_style'] ) && '1' == $sabox_options['sab_desc_style'] ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-desc {font-style:italic;}';
 		}
 		// Margin top & bottom, Padding
@@ -259,7 +263,7 @@ class Simple_Author_Box_Previewer {
 
 		// Icons size
 		$icon_size    = absint( $sabox_icon_size );
-		$icon_size_2x = absint( $sabox_icon_size )* 2;
+		$icon_size_2x = absint( $sabox_icon_size ) * 2;
 
 		$style .= '.saboxplugin-wrap .saboxplugin-socials a.saboxplugin-icon-grey svg {width:' . absint( $icon_size ) . 'px;height:' . absint( $icon_size ) . 'px;}';
 		$style .= '.saboxplugin-wrap .saboxplugin-socials a.saboxplugin-icon-color svg {width:' . absint( $icon_size_2x ) . 'px;height:' . absint( $icon_size_2x ) . 'px;}';
@@ -267,6 +271,7 @@ class Simple_Author_Box_Previewer {
 		$style .= '.saboxplugin-wrap a{cursor:not-allowed;}';
 
 		$style = apply_filters( 'sabox-previewer-css', $style, $sabox_options );
+
 		return $style;
 
 	}

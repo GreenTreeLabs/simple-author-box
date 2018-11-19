@@ -35,7 +35,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 	$custom_profile_image = get_the_author_meta( 'sabox-profile-image', $sabox_author_id );
 	if ( '' != $custom_profile_image ) {
 		$mediaid = attachment_url_to_postid( $custom_profile_image );
-		$alt = $mediaid ? get_post_meta( $mediaid, '_wp_attachment_image_alt', true) : '';
+		$alt     = $mediaid ? get_post_meta( $mediaid, '_wp_attachment_image_alt', true ) : '';
 		echo '<img src="' . esc_url( $custom_profile_image ) . '" alt="' . esc_attr( $alt ) . '">';
 	} else {
 		echo get_avatar( get_the_author_meta( 'user_email', $sabox_author_id ), '100' );
@@ -87,14 +87,13 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 	$show_social_icons = apply_filters( 'sabox_hide_social_icons', true, $author );
 
 
-
 	if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
 		echo '<div class="sab-edit-settings">';
 		echo '<a target="_blank" href="' . admin_url() . 'admin.php?page=simple-author-box-options">' . __( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
 		echo '</div>';
 	}
 
-	$show_email = '0' == $sabox_options['sab_email'] ? false : true;
+	$show_email   = '0' == $sabox_options['sab_email'] ? false : true;
 	$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, $show_email );
 
 	if ( '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
@@ -104,6 +103,10 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 			if ( 'user_email' == $social_platform ) {
 				$social_link = 'mailto:' . antispambot( $social_link );
+			}
+
+			if ( 'whatsapp' == $social_platform ) {
+				$social_link = 'https://wa.me/' . $social_link;
 			}
 
 			if ( ! empty( $social_link ) ) {

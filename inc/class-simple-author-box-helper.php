@@ -16,6 +16,7 @@ class Simple_Author_Box_Helper {
 		'digg'          => 'Digg',
 		'dribbble'      => 'Dribbble',
 		'facebook'      => 'Facebook',
+		'whatsapp'      => 'WhatsApp',
 		'flickr'        => 'Flickr',
 		'github'        => 'Github',
 		'google'        => 'Google',

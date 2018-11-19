@@ -29,57 +29,62 @@ class Simple_Author_Box_User_Profile {
 		unset( $social_icons['user_email'] );
 
 		?>
-		<div class="sab-user-profile-wrapper">
-			<h2><?php _e( 'Social Media Links (Simple Author Box)', 'saboxplugin' ); ?></h2>
-			<table class="form-table" id="sabox-social-table">
+        <div class="sab-user-profile-wrapper">
+            <h2><?php _e( 'Social Media Links (Simple Author Box)', 'saboxplugin' ); ?></h2>
+            <table class="form-table" id="sabox-social-table">
 				<?php
 
 				if ( ! empty( $social_links ) ) {
 					foreach ( $social_links as $social_platform => $social_link ) {
 						?>
-						<tr>
-							<th>
-								<span class="sabox-drag"></span>
-								<select name="sabox-social-icons[]">
+                        <tr>
+                            <th>
+                                <span class="sabox-drag"></span>
+                                <select name="sabox-social-icons[]">
 									<?php foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) { ?>
-										<option value="<?php echo $sabox_social_id; ?>" <?php selected( $sabox_social_id, $social_platform ); ?>><?php echo $sabox_social_name; ?></option>
+                                        <option value="<?php echo $sabox_social_id; ?>" <?php selected( $sabox_social_id, $social_platform ); ?>><?php echo $sabox_social_name; ?></option>
 									<?php } ?>
-								</select>
-							</th>
-							<td>
-								<input name="sabox-social-links[]" type="text" class="regular-text" value="<?php echo esc_url( $social_link ); ?>">
-								<span class="dashicons dashicons-trash"></span>
-							<td>
-						</tr>
+                                </select>
+                            </th>
+                            <td>
+                                <input name="sabox-social-links[]"
+                                       type="<?php echo ( 'whatsapp' == $social_platform ) ? 'tel' : 'text'; ?>"
+                                       class="regular-text"
+                                       value="<?php echo ( 'whatsapp' == $social_platform ) ? $social_link : esc_url( $social_link ); ?>">
+
+                                <span class="dashicons dashicons-trash"></span>
+                            <td>
+                        </tr>
 						<?php
 					}
 				} else {
 					?>
-					<tr>
-						<th>
-							<span class="sabox-drag"></span>
-							<select name="sabox-social-icons[]">
+                    <tr>
+                        <th>
+                            <span class="sabox-drag"></span>
+                            <select name="sabox-social-icons[]">
 								<?php foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) { ?>
-									<option value="<?php echo $sabox_social_id; ?>"><?php echo $sabox_social_name; ?></option>
+                                    <option value="<?php echo $sabox_social_id; ?>"><?php echo $sabox_social_name; ?></option>
 								<?php } ?>
-							</select>
-						</th>
-						<td>
-							<input name="sabox-social-links[]" type="text" class="regular-text" value="">
-							<span class="dashicons dashicons-trash"></span>
-						<td>
-					</tr>
+                            </select>
+                        </th>
+                        <td>
+                            <input name="sabox-social-links[]" type="text" class="regular-text" value="">
+                            <span class="dashicons dashicons-trash"></span>
+                        <td>
+                    </tr>
 					<?php
 				}
 
 				?>
 
-			</table>
+            </table>
 
-			<div class="sabox-add-social-link">
-				<a href="#" class="button button-primary button-hero"></span><?php esc_html_e( '+ Add new social platform', 'saboxplugin' ); ?></a>
-			</div>
-		</div>
+            <div class="sabox-add-social-link">
+                <a href="#"
+                   class="button button-primary button-hero"></span><?php esc_html_e( '+ Add new social platform', 'saboxplugin' ); ?></a>
+            </div>
+        </div>
 
 		<?php
 	}
@@ -91,29 +96,33 @@ class Simple_Author_Box_User_Profile {
 		}
 
 		$default_url = SIMPLE_AUTHOR_BOX_ASSETS . 'img/default.png';
-		$image   = get_user_meta( $user->ID, 'sabox-profile-image', true );
+		$image       = get_user_meta( $user->ID, 'sabox-profile-image', true );
 
 		?>
 
-		<div id="sabox-custom-profile-image">
-			<h3><?php _e( 'Custom User Profile Image (Simple Author Box)', 'saboxplugin' ); ?></h3>
-			<table class="form-table">
-				<tr>
-					<th><label for="cupp_meta"><?php _e( 'Profile Image', 'saboxplugin' ); ?></label></th>
-					<td>
-						<div id="sab-current-image">
+        <div id="sabox-custom-profile-image">
+            <h3><?php _e( 'Custom User Profile Image (Simple Author Box)', 'saboxplugin' ); ?></h3>
+            <table class="form-table">
+                <tr>
+                    <th><label for="cupp_meta"><?php _e( 'Profile Image', 'saboxplugin' ); ?></label></th>
+                    <td>
+                        <div id="sab-current-image">
 							<?php wp_nonce_field( 'sabox-profile-image', 'sabox-profile-nonce' ); ?>
-							<img data-default="<?php echo esc_url_raw( $default_url ); ?>" src="<?php echo '' != $image ? esc_url_raw( $image ) : esc_url_raw( $default_url ); ?>"><br>
-							<input type="text" name="sabox-custom-image" id="sabox-custom-image" class="regular-text" value="<?php echo esc_attr( $image ); ?>">
-						</div>
-						<div class="actions">
-							<a href="#" class="button-secondary" id="sabox-remove-image"><?php _e( 'Remove Image', 'saboxplugin' ); ?></a>
-							<a href="#" class="button-primary" id="sabox-add-image"><?php _e( 'Upload Image', 'saboxplugin' ); ?></a>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
+                            <img data-default="<?php echo esc_url_raw( $default_url ); ?>"
+                                 src="<?php echo '' != $image ? esc_url_raw( $image ) : esc_url_raw( $default_url ); ?>"><br>
+                            <input type="text" name="sabox-custom-image" id="sabox-custom-image" class="regular-text"
+                                   value="<?php echo esc_attr( $image ); ?>">
+                        </div>
+                        <div class="actions">
+                            <a href="#" class="button-secondary"
+                               id="sabox-remove-image"><?php _e( 'Remove Image', 'saboxplugin' ); ?></a>
+                            <a href="#" class="button-primary"
+                               id="sabox-add-image"><?php _e( 'Upload Image', 'saboxplugin' ); ?></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
 		<?php
 	}
@@ -128,7 +137,11 @@ class Simple_Author_Box_User_Profile {
 				if ( $social_link ) {
 					$social_platform = isset( $_POST['sabox-social-icons'][ $index ] ) ? $_POST['sabox-social-icons'][ $index ] : false;
 					if ( $social_platform && isset( $social_platforms[ $social_platform ] ) ) {
-						$social_links[ $social_platform ] = esc_url_raw( $social_link );
+						if ( 'whatsapp' == $social_platform ) {
+							$social_links[ $social_platform ] = $social_link;
+						} else {
+							$social_links[ $social_platform ] = esc_url_raw( $social_link );
+						}
 					}
 				}
 			}
@@ -152,7 +165,6 @@ class Simple_Author_Box_User_Profile {
 		} else {
 			delete_user_meta( $user_id, 'sabox-profile-image' );
 		}
-
 
 
 	}
