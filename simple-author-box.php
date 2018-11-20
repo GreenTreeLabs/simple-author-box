@@ -35,8 +35,10 @@ define( 'SIMPLE_AUTHOR_SCRIPT_DEBUG', false );
 
 
 require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box.php';
+
 Simple_Author_Box::get_instance();
 
 // load the uninstall feedback class
 require_once 'inc/feedback/class-epsilon-feedback-sab.php';
+
 new Epsilon_Feedback_SAB( __FILE__ );
