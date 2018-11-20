@@ -475,6 +475,9 @@ class Simple_Author_Box {
 			'.saboxplugin-wrap .saboxplugin-socials a svg .st1'                            => array(
 				'fill: rgba( 0, 0, 0, .3 );'
 			),
+			'img.sab-custom-avatar' => array(
+				'max-width:75px;'
+			),
 			// custom paddings & margins
 			'.saboxplugin-wrap'                                                            => array(
 				'margin-top: ' . absint( Simple_Author_Box_Helper::get_option( 'sab_box_margin_top' ) ) . 'px',
