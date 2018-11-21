@@ -220,7 +220,7 @@ class Simple_Author_Box_Admin_Page {
 				),
 				'sab_box_long_shadow' => array(
 					'label'       => __( 'Use flat long shadow effect', 'saboxplugin' ),
-					'description' => __( 'Check this if you want a flat shodow for social icons', 'saboxplugin' ),
+					'description' => __( 'Check this if you want a flat shadow for social icons', 'saboxplugin' ),
 					'type'        => 'toggle',
 					'condition'   => 'sab_colored',
 					'group'       => 'saboxplugin_options',
