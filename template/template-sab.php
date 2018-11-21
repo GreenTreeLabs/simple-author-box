@@ -62,7 +62,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 	echo '</div>';
 	echo '</div>';
 
-	if ( is_single() ) {
+	if ( is_single() || is_page() ) {
 		if ( get_the_author_meta( 'user_url' ) != '' && '1' == $sabox_options['sab_web'] ) { // author website on single
 			echo '<div class="saboxplugin-web ' . esc_attr( $sab_web_align ) . '">';
 			echo '<a href="' . esc_url( get_the_author_meta( 'user_url', $sabox_author_id ) ) . '" target="' . esc_attr( $sab_web_target ) . '" ' . $sab_web_rel . '>' . esc_html( get_the_author_meta( 'user_url', $sabox_author_id ) ) . '</a>';
