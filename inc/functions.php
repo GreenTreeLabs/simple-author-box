@@ -51,11 +51,13 @@ function sab_user_description_notice() {
 	$user_id         = get_current_user_id();
 	$user            = get_userdata( $user_id );
 	$user_descrition = $user->description;
-	if ( ! $user_descrition ) {
+	$user_roles      = $user->roles;
+	if ( ! $user_descrition && in_array( 'author', $user_roles ) ) {
 
 		?>
         <div class="notice notice-info is-dismissible">
-            <p><?php _e( 'Please complete Biographical Info', 'saboxplugin' ); ?></p>
+            <p><?php _e( 'Please complete Biographical Info', 'saboxplugin' );
+				var_dump( $user_role ); ?></p>
         </div>
 		<?php
 	}
@@ -66,9 +68,12 @@ add_action( 'admin_notices', 'sab_user_description_notice' );
 
 //return notice if user hasn't filled any social profiles
 function sab_user_social_notice() {
-	$user_id         = get_current_user_id();
-	$user_social           = get_user_meta( $user_id , 'sabox_social_links' );
-	if ( ! $user_social ) {
+	$user_id     = get_current_user_id();
+	$user_social = get_user_meta( $user_id, 'sabox_social_links' );
+	$user        = get_userdata( $user_id );
+	$user_roles  = $user->roles;
+
+	if ( ! $user_social && in_array( 'author', $user_roles ) ) {
 
 		?>
         <div class="notice notice-info is-dismissible">
