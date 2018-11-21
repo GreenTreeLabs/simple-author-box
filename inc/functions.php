@@ -64,7 +64,7 @@ function sab_user_description_notice() {
 add_action( 'admin_notices', 'sab_user_description_notice' );
 
 
-//return notice if user hasn't filled Biographical Info
+//return notice if user hasn't filled any social profiles
 function sab_user_social_notice() {
 	$user_id         = get_current_user_id();
 	$user_social           = get_user_meta( $user_id , 'sabox_social_links' );
