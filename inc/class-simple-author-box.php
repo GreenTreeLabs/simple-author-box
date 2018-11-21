@@ -349,19 +349,37 @@ class Simple_Author_Box {
 		$atts = wp_parse_args( $atts, $defaults );
 
 		if ( '' != $atts['ids'] ) {
-			$ids = explode( ',', $atts['ids'] );
-			ob_start();
-			$sabox_options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
-			foreach ( $ids as $user_id ) {
 
-				$template        = Simple_Author_Box_Helper::get_template();
-				$sabox_author_id = $user_id;
-				echo '<div class="sabox-plus-item">';
-				include( $template );
-				echo '</div>';
 
+			if ( 'all' != $atts['ids'] ) {
+
+				$ids = explode( ',', $atts['ids'] );
+				ob_start();
+				$sabox_options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
+				foreach ( $ids as $user_id ) {
+
+					$template        = Simple_Author_Box_Helper::get_template();
+					$sabox_author_id = $user_id;
+					echo '<div class="sabox-plus-item">';
+					include( $template );
+					echo '</div>';
+
+				}
+				$html = ob_get_clean();
+
+			} else {
+				/*
+			 * Check if Simple Author Box Pro is installed
+			 */
+
+				if ( class_exists( 'Simple_Author_Box_PRO' ) ) {
+					do_action( 'sab_pro_shortcode' );
+					$html = ob_get_clean();
+
+				} else {
+					$html = wpsabox_author_box();
+				}
 			}
-			$html = ob_get_clean();
 		} else {
 			$html = wpsabox_author_box();
 		}
@@ -475,7 +493,7 @@ class Simple_Author_Box {
 			'.saboxplugin-wrap .saboxplugin-socials a svg .st1'                            => array(
 				'fill: rgba( 0, 0, 0, .3 );'
 			),
-			'img.sab-custom-avatar' => array(
+			'img.sab-custom-avatar'                                                        => array(
 				'max-width:75px;'
 			),
 			// custom paddings & margins
