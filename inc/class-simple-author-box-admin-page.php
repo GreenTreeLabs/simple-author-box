@@ -469,41 +469,47 @@ class Simple_Author_Box_Admin_Page {
 	public function setting_page() {
 		?>
 
-		<div class="masthead">
-			<div class="wrap sabox-wrap">
-				<div class="sabox-masthead-left">
-					<h1 class="wp-heading-inline">
+        <div class="masthead">
+            <div class="wrap sabox-wrap">
+                <div class="sabox-masthead-left">
+                    <h1 class="wp-heading-inline">
 						<?php
 						/* Translators: Welcome Screen Title. */
 						echo esc_html( apply_filters( 'sabox_show_pro_title', __( 'Simple Author Box', 'saboxplugin' ) ) );
 						?>
-					</h1>
+                    </h1>
 
-				</div>
+                </div>
 
-				<div class="sabox-masthead-right">
-					<a target="_blank"
-					   href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>
-						&nbsp; &nbsp;<i class="dashicons dashicons-sos"></i>
-					</a>
-				</div>
-				<div class="wp-clearfix"></div>
-			</div>
-		</div><!--/.masthead-->
+                <div class="sabox-masthead-right">
+                    <a target="_blank"
+                       href="https://www.machothemes.com/support/?utm_source=sab&utm_medium=about-page&utm_campaign=support-button"><?php _e( 'Support', 'saboxplugin' ); ?>
+                        &nbsp; &nbsp;<i class="dashicons dashicons-sos"></i>
+                    </a>
+                </div>
+                <div class="wp-clearfix"></div>
+            </div>
+        </div><!--/.masthead-->
 
-		<div class="sabox-wrap">
-			<div class="sabox-preview">
-				<div class="sabox-preview-topbar">
-					<a href="<?php echo get_edit_user_link(); ?>#your-profile" class="button button-secondary" target="_blank"><i class="dashicons dashicons-edit"></i><?php echo esc_html__( 'Edit Author Profile', 'saboxplugin' ); ?>
-					</a>
-					<a href="<?php echo get_edit_user_link(); ?>#sabox-custom-profile-image" class="button button-secondary" target="_blank"><i class="dashicons dashicons-admin-users"></i><?php echo esc_html__( 'Change Author Avatar', 'saboxplugin' ); ?>
-					</a>
-					<a href="<?php echo get_edit_user_link(); ?>#sabox-social-table" class="button button-secondary" target="_blank"><i class="dashicons dashicons-networking"></i><?php echo esc_html__( 'Add/Edit Social Media Icons', 'saboxplugin' ); ?>
-					</a>
-				</div><!--/.sabox-preview-topbar-->
+        <div class="sabox-wrap">
+            <div class="sabox-preview">
+                <div class="sabox-preview-topbar">
+                    <a href="<?php echo get_edit_user_link(); ?>#your-profile" class="button button-secondary"
+                       target="_blank"><i
+                                class="dashicons dashicons-edit"></i><?php echo esc_html__( 'Edit Author Profile', 'saboxplugin' ); ?>
+                    </a>
+                    <a href="<?php echo get_edit_user_link(); ?>#sabox-custom-profile-image"
+                       class="button button-secondary" target="_blank"><i
+                                class="dashicons dashicons-admin-users"></i><?php echo esc_html__( 'Change Author Avatar', 'saboxplugin' ); ?>
+                    </a>
+                    <a href="<?php echo get_edit_user_link(); ?>#sabox-social-table" class="button button-secondary"
+                       target="_blank"><i
+                                class="dashicons dashicons-networking"></i><?php echo esc_html__( 'Add/Edit Social Media Icons', 'saboxplugin' ); ?>
+                    </a>
+                </div><!--/.sabox-preview-topbar-->
 				<?php do_action( 'sab_admin_preview' ) ?>
-			</div>
-			<h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
+            </div>
+            <h2 class="epfw-tab-wrapper nav-tab-wrapper wp-clearfix">
 				<?php foreach ( $this->sections as $id => $section ) { ?>
 					<?php
 					$class = 'epfw-tab nav-tab';
@@ -520,12 +526,12 @@ class Simple_Author_Box_Admin_Page {
 					}
 
 					?>
-					<a class="<?php echo esc_attr( $class ); ?>"
-					   href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
+                    <a class="<?php echo esc_attr( $class ); ?>"
+                       href="<?php echo esc_url( $url ); ?>"><?php echo wp_kses_post( $section['label'] ); ?></a>
 				<?php } ?>
-			</h2>
+            </h2>
 
-			<form method="post" id="sabox-container">
+            <form method="post" id="sabox-container">
 				<?php
 
 				wp_nonce_field( 'sabox-plugin-settings', 'sabox_plugin_settings_page' );
@@ -545,11 +551,11 @@ class Simple_Author_Box_Admin_Page {
 				echo '</div>';
 
 				?>
-			</form>
+            </form>
 
-		</div>
+        </div>
 
-		<span class="sabox-version">
+        <span class="sabox-version">
 				<?php echo _e( 'Version: ', 'saboxplugin' ) . esc_html( apply_filters( 'sabox_show_pro_version', SIMPLE_AUTHOR_BOX_VERSION ) ); ?>
 
 				<?php
@@ -690,6 +696,10 @@ class Simple_Author_Box_Admin_Page {
 					echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key, $value, false ) . '>' . esc_html( $choice ) . '</option>';
 				}
 				echo '</select>';
+				break;
+			case 'textarea':
+				$value = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
+				echo '<textarea rows="3" cols="50"  id="' . esc_attr( $field_name ) . '" value="' . esc_attr( $value ) . '" name="' . esc_attr( $name ) . '" class="saboxfield">'. $value .'</textarea>';
 				break;
 			case 'readonly':
 				echo '<textarea clas="regular-text" rows="3" cols="50" onclick="this.focus();this.select();" readonly="readonly">' . esc_attr( $field['value'] ) . '</textarea>';
@@ -837,53 +847,53 @@ class Simple_Author_Box_Admin_Page {
 
 		?>
 
-		<div class="wrap about-wrap simple-author-box-wrap">
-			<h1><?php echo esc_html__( 'Why you should be upgrading', 'saboxplugin' ); ?></h1>
-			<p class="about-text"><?php echo esc_html__( 'Introducing one of the best author box systems ever made for WordPress. Simple Author Box is an exquisite WordPress Author Box plugin perfectly fit for any needs. We\'ve outlined the PRO features below.', 'saboxplugin' ); ?></p>
-			<div class="wp-badge"></div>
-			<h2 class="nav-tab-wrapper wp-clearfix">
-				<a href="<?php echo admin_url( 'admin.php?page=sab-upgrade' ); ?>"
-				   class="nav-tab nav-tab-active"><?php echo esc_html__( 'Comparison Table: Lite vs PRO', 'saboxplugin' ); ?></a>
-			</h2>
-			<div class="featured-section features">
-				<table class="free-pro-table">
-					<thead>
-					<tr>
-						<th></th>
-						<th><?php _e( 'Free', 'saboxplugin' ); ?></th>
-						<th><?php _e( 'PRO', 'saboxplugin' ); ?></th>
-					</tr>
-					</thead>
-					<tbody>
+        <div class="wrap about-wrap simple-author-box-wrap">
+            <h1><?php echo esc_html__( 'Why you should be upgrading', 'saboxplugin' ); ?></h1>
+            <p class="about-text"><?php echo esc_html__( 'Introducing one of the best author box systems ever made for WordPress. Simple Author Box is an exquisite WordPress Author Box plugin perfectly fit for any needs. We\'ve outlined the PRO features below.', 'saboxplugin' ); ?></p>
+            <div class="wp-badge"></div>
+            <h2 class="nav-tab-wrapper wp-clearfix">
+                <a href="<?php echo admin_url( 'admin.php?page=sab-upgrade' ); ?>"
+                   class="nav-tab nav-tab-active"><?php echo esc_html__( 'Comparison Table: Lite vs PRO', 'saboxplugin' ); ?></a>
+            </h2>
+            <div class="featured-section features">
+                <table class="free-pro-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th><?php _e( 'Free', 'saboxplugin' ); ?></th>
+                        <th><?php _e( 'PRO', 'saboxplugin' ); ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
 					<?php foreach ( $features as $feature ) : ?>
-						<tr>
-							<td class="feature">
-								<h3><?php echo $feature['label']; ?></h3>
+                        <tr>
+                            <td class="feature">
+                                <h3><?php echo $feature['label']; ?></h3>
 								<?php if ( isset( $feature['sub'] ) ) : ?>
-									<p><?php echo $feature['sub']; ?></p>
+                                    <p><?php echo $feature['sub']; ?></p>
 								<?php endif ?>
-							</td>
-							<td class="sab-feature">
+                            </td>
+                            <td class="sab-feature">
 								<?php echo $feature['sab']; ?>
-							</td>
-							<td class="sab-pro-feature">
+                            </td>
+                            <td class="sab-pro-feature">
 								<?php echo $feature['sab-pro']; ?>
-							</td>
-						</tr>
+                            </td>
+                        </tr>
 					<?php endforeach; ?>
-					<tr>
-						<td></td>
-						<td colspan="2" class="text-right">
-							<a href="//www.machothemes.com/plugin/simple-author-box-pro?utm_source=sab&utm_medium=about-page&utm_campaign=upsell"
-							   target="_blank" class="button button-primary button-hero">
-								<span class="dashicons dashicons-cart"></span>
+                    <tr>
+                        <td></td>
+                        <td colspan="2" class="text-right">
+                            <a href="//www.machothemes.com/plugin/simple-author-box-pro?utm_source=sab&utm_medium=about-page&utm_campaign=upsell"
+                               target="_blank" class="button button-primary button-hero">
+                                <span class="dashicons dashicons-cart"></span>
 								<?php _e( 'Get The Pro Version Now!', 'saboxplugin' ); ?>
-							</a></td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+                            </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 		<?php
 	}
 }
