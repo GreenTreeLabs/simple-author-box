@@ -699,7 +699,7 @@ class Simple_Author_Box_Admin_Page {
 				break;
 			case 'textarea':
 				$value = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
-				echo '<textarea rows="3" cols="50"  id="' . esc_attr( $field_name ) . '" value="' . esc_attr( $value ) . '" name="' . esc_attr( $name ) . '" class="saboxfield">'. $value .'</textarea>';
+				echo '<textarea rows="3" cols="50"  id="' . esc_attr( $field_name ) . '" value="' . esc_attr( $value ) . '" name="' . esc_attr( $name ) . '" class="saboxfield">' . $value . '</textarea>';
 				break;
 			case 'readonly':
 				echo '<textarea clas="regular-text" rows="3" cols="50" onclick="this.focus();this.select();" readonly="readonly">' . esc_attr( $field['value'] ) . '</textarea>';
@@ -732,9 +732,16 @@ class Simple_Author_Box_Admin_Page {
 				}
 
 				$values = isset( $this->options[ $field_name ] ) ? $this->options[ $field_name ] : $field['default'];
+
+				if ( is_array( $values ) ) {
+					$checked = $values;
+				} else {
+					$checked = array();
+				}
+
 				foreach ( $field['choices'] as $key => $choice ) {
 					echo '<div>';
-					echo '<input id="' . $key . '-' . $field_name . '" type="checkbox" value="' . $key . '" ' . checked( 1, in_array( $key, $values ), false ) . ' name="' . esc_attr( $name ) . '[]"><label for="' . $key . '-' . $field_name . '" class="checkbox-label">' . $choice . '</label>';
+					echo '<input id="' . $key . '-' . $field_name . '" type="checkbox" value="' . $key . '" ' . checked( 1, in_array( $key, $checked ), false ) . ' name="' . esc_attr( $name ) . '[]"><label for="' . $key . '-' . $field_name . '" class="checkbox-label">' . $choice . '</label>';
 					echo '</div>';
 				}
 				echo '</div>';
