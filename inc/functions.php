@@ -56,8 +56,7 @@ function sab_user_description_notice() {
 
 		?>
         <div class="notice notice-info is-dismissible">
-            <p><?php _e( 'Please complete Biographical Info', 'saboxplugin' );
-				var_dump( $user_role ); ?></p>
+            <p><?php _e( 'Please complete Biographical Info', 'saboxplugin' ); ?></p>
         </div>
 		<?php
 	}
