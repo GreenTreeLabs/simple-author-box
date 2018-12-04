@@ -62,6 +62,9 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		$description = wptexturize( $description );
 		$description = wpautop( $description );
 		echo wp_kses_post( $description );
+		if($description == ""){
+			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#wp-description-wrap">' . __( 'Add Biographical Info', 'saboxplugin' ) . '</a>';
+		}
 		echo '</div>';
 		echo '</div>';
 
@@ -98,6 +101,10 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 		$show_email   = '0' == $sabox_options['sab_email'] ? false : true;
 		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, $show_email );
+
+		if(empty($social_links)){
+			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#sabox-social-table">' . __( 'Add Social Links', 'saboxplugin' ) . '</a>';
+		}
 
 		if ( '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
 			echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
