@@ -1,18 +1,15 @@
 <?php
 if ( class_exists( 'ET_builder_Module' ) ) {
 	class SAB_Divi_Element extends ET_Builder_Module {
-		public
-			$slug = 'simple_author_box';
-		public
-			$vb_support = 'on';
+		public $slug = 'et_pb_simple_author_box';
+		public $vb_support = 'on';
 
-		public
-		function init() {
+		public function init() {
 			$this->name = esc_html__( 'Simple Author Box', 'saboxplugin' );
+
 		}
 
-		public
-		function get_fields() {
+		public function get_fields() {
 			return array(
 				'heading' => array(
 					'label'           => esc_html__( 'Heading', 'saboxplugin' ),
@@ -31,10 +28,7 @@ if ( class_exists( 'ET_builder_Module' ) ) {
 			);
 		}
 
-		public
-		function render(
-			$unprocessed_props, $content = null, $render_slug
-		) {
+		public function shortcode_callback( $atts, $content = null, $function_name) {
 			return wpsabox_author_box();
 		}
 	}
