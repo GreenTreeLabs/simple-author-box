@@ -47,7 +47,12 @@ class Simple_Author_Box_User_Profile {
 								</select>
 							</th>
 							<td>
-								<input name="sabox-social-links[]" type="text" class="regular-text" value="<?php echo esc_url( $social_link ); ?>">
+								<?php if ( 'whatsapp' == $sabox_social_id ){ ?>
+									<input name="sabox-social-links[]" type="text" class="regular-text" value="<?php echo esc_html( $social_link ); ?>">
+								<?php }else{ ?>
+									<input name="sabox-social-links[]" type="text" class="regular-text" value="<?php echo esc_url( $social_link ); ?>">
+								<?php } ?>
+								
 								<span class="dashicons dashicons-trash"></span>
 							<td>
 						</tr>
@@ -128,7 +133,11 @@ class Simple_Author_Box_User_Profile {
 				if ( $social_link ) {
 					$social_platform = isset( $_POST['sabox-social-icons'][ $index ] ) ? $_POST['sabox-social-icons'][ $index ] : false;
 					if ( $social_platform && isset( $social_platforms[ $social_platform ] ) ) {
-						$social_links[ $social_platform ] = esc_url_raw( $social_link );
+						if ( 'whatsapp' == $social_platform ) {
+							$social_links[ $social_platform ] = preg_replace( '/[^0-9]/', '', $social_link );
+						}else{
+							$social_links[ $social_platform ] = esc_url_raw( $social_link );
+						}
 					}
 				}
 			}

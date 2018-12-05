@@ -4,7 +4,7 @@ Tags: author box, responsive author box, author profile fields, author social ic
 Requires at least: 4.6
 Requires PHP: 5.6
 Tested up to: 4.9
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -58,6 +58,10 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 
 The Simple Author Box plugin was designed to display the author information on posts, categories, tags, etc. The plugin does not work on pages – it was not designed for this, unfortunately. Adding the shortcode on a blog page will also not work because the plugin won’t have author information to display/will not know which author information to display. Adding the shortcode in a widget that is on a page is another instance when the SAB will not be displayed due to the same reasons. You can add it in a widget, but that widget has to be on a single post.
 
+= What should I add for Whatsapp ? =
+
+You should add there your phone number, for more information read <a href="https://faq.whatsapp.com/en/android/26000030/" target="_blank">this</a>
+
 = Can I remove the SAB from WooCommerce/Category/Tags pages? Can I have only on posts? =
 
 The PRO version of Simple Author Box fixes this.
@@ -95,6 +99,9 @@ Or you can give back by recommending this amazing plugin to your friends!
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.1.4 = 
+* Added WhatsApp Social Media Link.
 
 = 2.1.3 = 
 * Fixed error on footer.
