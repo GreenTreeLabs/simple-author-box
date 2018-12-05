@@ -28,6 +28,7 @@ $sab_author_link = sprintf( '<a href="%s" class="vcard author"><span class="fn">
 if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
 
 	$show_guest_only = ( get_post_meta( get_the_ID(), '_disable_sab_author_here', true ) ) ? get_post_meta( get_the_ID(), '_disable_sab_author_here', true ) : "false";
+
 	if ( $show_guest_only != "on" ) {
 
 		echo '<div class="saboxplugin-wrap">'; // start saboxplugin-wrap div
@@ -62,7 +63,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		$description = wptexturize( $description );
 		$description = wpautop( $description );
 		echo wp_kses_post( $description );
-		if($description == ""){
+		if ( $description == "" && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
 			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#wp-description-wrap">' . __( 'Add Biographical Info', 'saboxplugin' ) . '</a>';
 		}
 		echo '</div>';
@@ -102,7 +103,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		$show_email   = '0' == $sabox_options['sab_email'] ? false : true;
 		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, $show_email );
 
-		if(empty($social_links)){
+		if ( empty( $social_links ) && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
 			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#sabox-social-table">' . __( 'Add Social Links', 'saboxplugin' ) . '</a>';
 		}
 
