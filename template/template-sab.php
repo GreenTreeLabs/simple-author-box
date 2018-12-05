@@ -34,7 +34,9 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 	echo '<div class="saboxplugin-gravatar">';
 	$custom_profile_image = get_the_author_meta( 'sabox-profile-image', $sabox_author_id );
 	if ( '' != $custom_profile_image ) {
-		echo '<img src="' . esc_url( $custom_profile_image ) . '">';
+		$mediaid = attachment_url_to_postid( $custom_profile_image );
+		$alt = $mediaid ? get_post_meta( $mediaid, '_wp_attachment_image_alt', true) : '';
+		echo '<img src="' . esc_url( $custom_profile_image ) . '" alt="' . esc_attr( $alt ) . '">';
 	} else {
 		echo get_avatar( get_the_author_meta( 'user_email', $sabox_author_id ), '100' );
 	}
@@ -97,7 +99,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 	if ( '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
 		echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
-		
+
 		foreach ( $social_links as $social_platform => $social_link ) {
 
 			if ( 'user_email' == $social_platform ) {

@@ -890,7 +890,7 @@ class Simple_Author_Box_Helper {
 		) );
 
 		if ( 'saboxplugin_options' == $key ) {
-			
+
 			if ( ! isset( self::$options['saboxplugin_options'] ) ) {
 				self::$options['saboxplugin_options'] = get_option( 'saboxplugin_options', array() );
 			}
@@ -898,9 +898,9 @@ class Simple_Author_Box_Helper {
 			return wp_parse_args( self::$options['saboxplugin_options'], $defaults['saboxplugin_options'] );
 
 		} else {
-			
+
 			if ( isset( self::$options[ $key ] ) ) {
-				
+
 				return self::$options[ $key ];
 
 			}else{
@@ -1022,7 +1022,7 @@ class Simple_Author_Box_Helper {
 		}
 
 		// Author description font style
-		if ( '1' == $sabox_options['sab_desc_style'] ) {
+		if ( isset( $sabox_options['sab_desc_style'] ) && '1' == $sabox_options['sab_desc_style'] ) {
 			$style .= '.saboxplugin-wrap .saboxplugin-desc {font-style:italic;}';
 		}
 		// Margin top & bottom, Padding
