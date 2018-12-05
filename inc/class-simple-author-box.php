@@ -18,6 +18,7 @@ class Simple_Author_Box {
 
 		add_action( 'init', array( $this, 'define_public_hooks' ) );
 
+
 	}
 
 	/**
@@ -172,6 +173,7 @@ class Simple_Author_Box {
 		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
 		add_shortcode( 'simple-author-box', array( $this, 'shortcode' ) );
 		add_filter( 'sabox_hide_social_icons', array( $this, 'show_social_media_icons' ), 10, 2 );
+		add_filter( 'sabox_check_if_show', array( $this, 'check_if_show_archive' ) );
 
 		if ( '0' == $this->options['sab_autoinsert'] ) {
 			add_filter( 'the_content', 'wpsabox_author_box' );
@@ -394,6 +396,27 @@ class Simple_Author_Box {
 		}
 
 		return true;
+	}
+
+	public function check_if_show_archive() {
+		$options = get_option( 'saboxplugin_options' );
+
+		if ( class_exists( 'Simple_Author_Box_PRO' ) ) {
+			
+			if ( isset( $options['sab_hide_on_archive'] ) && $options['sab_hide_on_archive'] == 1 && is_archive() && ( ! isset( $options['sab_visibility_tax'] ) || $options['sab_visibility_tax'] == "0" ) ) {
+				return false;
+			} else {
+				return Simple_Author_Box_PRO::check_if_show_tax();
+			}
+
+		} else {
+
+			if ( isset( $options['sab_hide_on_archive'] ) && $options['sab_hide_on_archive'] == 1 && is_archive() ) {
+				return false;
+			}
+
+			return true;
+		}
 	}
 
 	/**

@@ -78,6 +78,12 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
+				'sab_hide_on_archive' => array(
+					'label'       => __( 'Hide the author box on archives', 'saboxplugin' ),
+					'description' => __( 'When turned ON, the author box will be removed on archives.', 'saboxplugin' ),
+					'type'        => 'toggle',
+					'group'       => 'saboxplugin_options',
+				),
 			),
 			'appearance-options'    => array(
 				'sab_box_margin_top'         => array(
