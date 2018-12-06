@@ -42,3 +42,16 @@ Simple_Author_Box::get_instance();
 require_once 'inc/feedback/class-epsilon-feedback-sab.php';
 
 new Epsilon_Feedback_SAB( __FILE__ );
+
+function sab_check_for_review() {
+	if ( ! is_admin() ) {
+		return;
+	}
+	require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-sab-review.php';
+
+	SAB_Review::get_instance( array(
+		'slug' => 'saboxplugin',
+	) );
+}
+
+sab_check_for_review();
