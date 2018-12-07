@@ -14,6 +14,12 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 	function wpsabox_author_box( $saboxmeta = null ) {
 
 		$show = ( is_single() || is_author() || is_archive() );
+
+		/**
+		 * Hook: sabox_check_if_show.
+		 *
+		 * @hooked Simple_Author_Box::check_if_show_archive - 10
+		 */
 		$show = apply_filters( 'sabox_check_if_show', $show );
 
 		if ( $show ) {
