@@ -49,6 +49,17 @@ The PRO version of Simple Author Box fixes this.
 
 The second author box might be a theme feature and you will need to turn it off from your theme’s options, or hide it with custom CSS.
 
+= How I can translate the author's biography ? =
+
+You can use 2 plugins in order to do this: Polylang or WPML. Here it is how to translate an author's biography with each plugin:
+
+**Polylang**
+When using Polylang a "Biographical Info" textarea is added for each language, this way you can enter the "Biographical Info" for each respective language.
+
+**WPML**
+In order to translate the "Biographical Info" using this plugin you have to have the wpml-string-translation plugin installed and the following configurations made:
+In the String Translation settings at the bottom you will see a "More options" setting. Click "Edit" then select "Author" from there and finally click "Apply". After this, in the filters above, at "Select strings within domain" select "Authors". This will reveal the strings that can be translated from the author role.
+
 = How can I get support? =
 
 You can get free support either here on the support forums: <a href="https://wordpress.org/support/plugin/simple-author-box">https://wordpress.org/support/plugin/simple-author-box</a>
