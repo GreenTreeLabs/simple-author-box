@@ -50,7 +50,7 @@ function sab_check_for_review() {
 	require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-sab-review.php';
 
 	SAB_Review::get_instance( array(
-		'slug' => 'saboxplugin',
+		'slug' => 'simple-author-box',
 	) );
 }
 

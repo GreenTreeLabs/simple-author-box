@@ -85,7 +85,11 @@ class SAB_Review {
 		$value = get_transient( 'saboxplugin_review' );
 
 		if ( $value ) {
-			return $value;
+			$current_time = time(); // or your date as well
+            $trans_date = strtotime($value);
+            $date_diff = $current_time - $trans_date;
+
+            return round($date_diff / (60 * 60 * 24));
 		}
 
 		$date = date( 'Y-m-d' );
