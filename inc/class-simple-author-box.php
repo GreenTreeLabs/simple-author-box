@@ -399,11 +399,10 @@ class Simple_Author_Box {
 	}
 
 	public function check_if_show_archive() {
-		$options = get_option( 'saboxplugin_options' );
-
+		$options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
 		if ( class_exists( 'Simple_Author_Box_PRO' ) ) {
-			
-			if ( isset( $options['sab_hide_on_archive'] ) && $options['sab_hide_on_archive'] == 1 && is_archive() && ( ! isset( $options['sab_visibility_tax'] ) || $options['sab_visibility_tax'] == "0" ) ) {
+
+			if ( isset( $options['sab_hide_on_archive'] ) && $options['sab_hide_on_archive'] == 1 && ( is_archive() || is_home() ) && ( ! isset( $options['sab_visibility_tax'] ) || $options['sab_visibility_tax'] == "0" ) ) {
 				return false;
 			} else {
 				return Simple_Author_Box_PRO::check_if_show_tax();
@@ -411,7 +410,7 @@ class Simple_Author_Box {
 
 		} else {
 
-			if ( isset( $options['sab_hide_on_archive'] ) && $options['sab_hide_on_archive'] == 1 && is_archive() ) {
+			if ( isset( $options['sab_hide_on_archive'] ) && $options['sab_hide_on_archive'] == 1 && ( is_archive() || is_home() ) ) {
 				return false;
 			}
 
