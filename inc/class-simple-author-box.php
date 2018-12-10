@@ -312,7 +312,7 @@ class Simple_Author_Box {
 		 * end changes introduced in 2.0.4
 		 */
 
-		if ( ! is_single() and ! is_page() and ! is_author() and ! is_archive() ) {
+		if ( ! is_single() && ! is_page() && ! is_author() && ! is_archive() ) {
 			return;
 		}
 
@@ -325,7 +325,7 @@ class Simple_Author_Box {
 
 	public function inline_style() {
 
-		if ( ! is_single() and ! is_page() and ! is_author() and ! is_archive() ) {
+		if ( ! is_single() && ! is_page() && ! is_author() && ! is_archive() ) {
 			return;
 		}
 
@@ -347,10 +347,14 @@ class Simple_Author_Box {
 
 
 			if ( 'all' != $atts['ids'] ) {
-
 				$ids = explode( ',', $atts['ids'] );
-				ob_start();
-				$sabox_options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
+			} else {
+				$ids = get_users( array( 'fields' => 'ID' ) );
+			}
+
+			ob_start();
+			$sabox_options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
+			if ( ! empty( $ids ) ) {
 				foreach ( $ids as $user_id ) {
 
 					$template        = Simple_Author_Box_Helper::get_template();
@@ -360,21 +364,10 @@ class Simple_Author_Box {
 					echo '</div>';
 
 				}
-				$html = ob_get_clean();
-
-			} else {
-				/*
-			 * Check if Simple Author Box Pro is installed
-			 */
-
-				if ( class_exists( 'Simple_Author_Box_PRO' ) ) {
-					do_action( 'sab_pro_shortcode' );
-					$html = ob_get_clean();
-
-				} else {
-					$html = wpsabox_author_box();
-				}
 			}
+			
+			$html = ob_get_clean();
+
 		} else {
 			$html = wpsabox_author_box();
 		}
