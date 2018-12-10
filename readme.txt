@@ -60,6 +60,11 @@ When using Polylang a "Biographical Info" textarea is added for each language, t
 In order to translate the "Biographical Info" using this plugin you have to have the wpml-string-translation plugin installed and the following configurations made:
 In the String Translation settings at the bottom you will see a "More options" setting. Click "Edit" then select "Author" from there and finally click "Apply". After this, in the filters above, at "Select strings within domain" select "Authors". This will reveal the strings that can be translated from the author role.
 
+= How can I use it with Content Blocks (Custom Post Widget) ? =
+
+When adding a widget in the widget area you can select the content block to display and there you will also see a checkbox titled "Do not apply content filters". Checking this checkbox will prevent the author box from displaying for that custom post.
+When using a shortcode, example [content_block id=41] you can stop the author box from displaying by using one of these shortocodes instead: [content_block id=41 suppress_content_filters=true] or [content_block id=41 suppress_filters=true], both work.
+
 = How can I get support? =
 
 You can get free support either here on the support forums: <a href="https://wordpress.org/support/plugin/simple-author-box">https://wordpress.org/support/plugin/simple-author-box</a>
