@@ -48,13 +48,6 @@ class Simple_Author_Box {
 
 		}
 
-		// require file only after builder is loaded
-
-		function sab_extend_divi() {
-			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-sab-divi-element.php';
-		}
-
-		add_action( 'et_builder_ready', 'sab_extend_divi' );
 	}
 
 	/**
