@@ -33,7 +33,6 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 			$show_post_author_box = apply_filters( 'sabox_check_if_show_post_author_box', true, $sabox_options );
 
 			do_action( 'sabox_before_author_box', $sabox_options );
-
 			if ( $show_post_author_box ) {
 				include( $template );
 			}
