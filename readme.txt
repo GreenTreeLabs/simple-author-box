@@ -66,6 +66,10 @@ You should add there your phone number, for more information read <a href="https
 
 The PRO version of Simple Author Box fixes this.
 
+= Is there any widget in Simple Author Box ? =
+
+No, but we have two awesome widgets in the PRO version.
+
 = I have two author boxes. How can I hide one? =
 
 The second author box might be a theme feature and you will need to turn it off from your theme’s options, or hide it with custom CSS.
