@@ -95,6 +95,18 @@ Or you can give back by recommending this amazing plugin to your friends!
 
 == Changelog ==
 
+= 2.2.0 =
+* Added option to show all authors with our shortcode
+* Added option to disable the author box on archieve pages.
+* Found a solution for "incompatibility with Content Blocks"
+* Found a solution to translate the author description with WPML and Polylang
+
+= 2.1.5 = 
+* Remove uninstall feedback.
+
+= 2.1.4 = 
+* Added WhatsApp Social Media Link.
+
 = 2.1.3 = 
 * Fixed error on footer.
 * Fixed profile image in dashboard ( https://github.com/MachoThemes/simple-author-box/issues/97 )
