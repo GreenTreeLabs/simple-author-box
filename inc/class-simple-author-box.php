@@ -386,6 +386,10 @@ class Simple_Author_Box {
 
 	public function check_if_show_archive() {
 
+		if ( ! is_single() && ! is_author() && ! is_archive() ) {
+			return false;
+		}
+
 		if ( 1 == $this->options['sab_hide_on_archive'] && ! is_single() ) {
 			return false;
 		}
