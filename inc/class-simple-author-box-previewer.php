@@ -275,5 +275,4 @@ class Simple_Author_Box_Previewer {
 		return $style;
 
 	}
-
 }

@@ -1044,5 +1044,4 @@ class Simple_Author_Box_Helper {
 
 		return apply_filters( 'sabox_inline_css', $style );
 	}
-
 }

@@ -3,8 +3,8 @@ Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
 Requires PHP: 5.6
-Tested up to: 4.9
 Stable tag: 2.2.0
+Tested up to: 5.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -24,6 +24,23 @@ Adds a cool responsive author box with social icons on your posts.
 * Simple Author Box has RTL support
 * Simple Author Box has AMP support
 
+= Simple Author Box Pro Features =
+
+* Change author box position to before/after content
+* Choose whether the author's name should link to its website/page/none
+* Select where to show author box on
+* Add rotate effect on author avatar hover
+* Option to open author website link in a new tab
+* Option to add "nofollow" attribute on author website link
+* Choose the author website's position: right/left
+* Social icons type, style, rotate effect, shadow effect, thin border
+* Option to change the color palette
+* Choose the font and font sizes for the author's job title, website, name, and description
+* Enable guest authors and co-authors
+* Option to use guest authors as co-authors
+* Top authors widget - displays the most popular authors based of comments
+* Simple author box widget - displays the users selected
+
 **About us:**
 We are a young team of WordPress aficionados who love building WordPress plugins & <a href="https://www.machothemes.com/" target="_blank" title="Premium WordPress themes">Premium WordPress themes</a> over on our theme shop. We’re also blogging and wish to help our users find the best <a href="https://www.machothemes.com/blog/cheap-wordpress-hosting/" target="_blank" title="Cheap WordPress Hosting">Cheap WordPress hosting</a>.
 
@@ -40,6 +57,10 @@ We are a young team of WordPress aficionados who love building WordPress plugins
 = Why does the author box not display on a page? =
 
 The Simple Author Box plugin was designed to display the author information on posts, categories, tags, etc. The plugin does not work on pages – it was not designed for this, unfortunately. Adding the shortcode on a blog page will also not work because the plugin won’t have author information to display/will not know which author information to display. Adding the shortcode in a widget that is on a page is another instance when the SAB will not be displayed due to the same reasons. You can add it in a widget, but that widget has to be on a single post.
+
+= What should I add for Whatsapp ? =
+
+You should add there your phone number, for more information read <a href="https://faq.whatsapp.com/en/android/26000030/" target="_blank">this</a>
 
 = Can I remove the SAB from WooCommerce/Category/Tags pages? Can I have only on posts? =
 

@@ -131,3 +131,4 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		echo '</div>'; // end of saboxplugin-wrap div
 	}
 }
+

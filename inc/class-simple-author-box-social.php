@@ -445,5 +445,4 @@ class Simple_Author_Box_Social {
 		}
 
 	}
-
 }
