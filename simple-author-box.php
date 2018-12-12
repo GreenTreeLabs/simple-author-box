@@ -3,7 +3,7 @@
  * Plugin Name: Simple Author Box
  * Plugin URI: http://wordpress.org/plugins/simple-author-box/
  * Description: Adds a responsive author box with social icons on your posts.
- * Version: 2.1.5
+ * Version: 2.2.0
  * Author: Macho Themes
  * Author URI: https://www.machothemes.com/
  * License: GPLv3
@@ -30,9 +30,22 @@
 define( 'SIMPLE_AUTHOR_BOX_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_ASSETS', plugins_url( '/assets/', __FILE__ ) );
 define( 'SIMPLE_AUTHOR_BOX_SLUG', plugin_basename( __FILE__ ) );
-define( 'SIMPLE_AUTHOR_BOX_VERSION', '2.1.5' );
+define( 'SIMPLE_AUTHOR_BOX_VERSION', '2.2.0' );
 define( 'SIMPLE_AUTHOR_SCRIPT_DEBUG', false );
 
-
 require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box.php';
+
 Simple_Author_Box::get_instance();
+
+function sab_check_for_review() {
+	if ( ! is_admin() ) {
+		return;
+	}
+	require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-sab-review.php';
+
+	SAB_Review::get_instance( array(
+		'slug' => 'simple-author-box',
+	) );
+}
+
+sab_check_for_review();

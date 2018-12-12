@@ -3,8 +3,8 @@ Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
 Requires PHP: 5.6
+Stable tag: 2.2.0
 Tested up to: 5.0
-Stable tag: 2.1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,6 +70,22 @@ The PRO version of Simple Author Box fixes this.
 
 The second author box might be a theme feature and you will need to turn it off from your theme’s options, or hide it with custom CSS.
 
+= How I can translate the author's biography ? =
+
+You can use 2 plugins in order to do this: Polylang or WPML. Here it is how to translate an author's biography with each plugin:
+
+**Polylang**
+When using Polylang a "Biographical Info" textarea is added for each language, this way you can enter the "Biographical Info" for each respective language.
+
+**WPML**
+In order to translate the "Biographical Info" using this plugin you have to have the wpml-string-translation plugin installed and the following configurations made:
+In the String Translation settings at the bottom you will see a "More options" setting. Click "Edit" then select "Author" from there and finally click "Apply". After this, in the filters above, at "Select strings within domain" select "Authors". This will reveal the strings that can be translated from the author role.
+
+= How can I use it with Content Blocks (Custom Post Widget) ? =
+
+When adding a widget in the widget area you can select the content block to display and there you will also see a checkbox titled "Do not apply content filters". Checking this checkbox will prevent the author box from displaying for that custom post.
+When using a shortcode, example [content_block id=41] you can stop the author box from displaying by using one of these shortocodes instead: [content_block id=41 suppress_content_filters=true] or [content_block id=41 suppress_filters=true], both work.
+
 = How can I get support? =
 
 You can get free support either here on the support forums: <a href="https://wordpress.org/support/plugin/simple-author-box">https://wordpress.org/support/plugin/simple-author-box</a>
@@ -99,6 +115,12 @@ Or you can give back by recommending this amazing plugin to your friends!
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.2.0 =
+* Added option to show all authors with our shortcode
+* Added option to disable the author box on archieve pages.
+* Found a solution for "incompatibility with Content Blocks"
+* Found a solution to translate the author description with WPML and Polylang
 
 = 2.1.5 = 
 * Remove uninstall feedback.
