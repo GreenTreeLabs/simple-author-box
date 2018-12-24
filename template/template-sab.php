@@ -23,7 +23,7 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 	$sab_web_rel = '';
 }
 
-$sab_author_link = sprintf( '<a href="%s" class="vcard author"><span class="fn">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
+$sab_author_link = sprintf( '<a href="%s" class="vcard author" rel="author" itemprop="url"><span class="fn" itemprop="name">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
 if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
 
@@ -31,7 +31,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 	if ( $show_guest_only != "on" ) {
 
-		echo '<div class="saboxplugin-wrap">'; // start saboxplugin-wrap div
+		echo '<div class="saboxplugin-wrap" itemtype="http://schema.org/Person" itemscope itemprop="author">'; // start saboxplugin-wrap div
 
 		// author box gravatar
 		echo '<div class="saboxplugin-gravatar">';
@@ -39,9 +39,9 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		if ( '' != $custom_profile_image ) {
 			$mediaid = attachment_url_to_postid( $custom_profile_image );
 			$alt     = $mediaid ? get_post_meta( $mediaid, '_wp_attachment_image_alt', true ) : '';
-			echo '<img src="' . esc_url( $custom_profile_image ) . '" alt="' . esc_attr( $alt ) . '">';
+			echo '<img src="' . esc_url( $custom_profile_image ) . '" alt="' . esc_attr( $alt ) . '" itemprop="image">';
 		} else {
-			echo get_avatar( get_the_author_meta( 'user_email', $sabox_author_id ), '100' );
+			echo get_avatar( get_the_author_meta( 'user_email', $sabox_author_id ), '100', '', '', array('extra_attr' => 'itemprop="image"') );
 		}
 
 		echo '</div>';
@@ -58,7 +58,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 		// author box description
 		echo '<div class="saboxplugin-desc">';
-		echo '<div>';
+		echo '<div itemprop="description">';
 		$description = get_the_author_meta( 'description', $sabox_author_id );
 		$description = wptexturize( $description );
 		$description = wpautop( $description );
