@@ -120,6 +120,10 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 					$social_link = 'https://wa.me/' . $social_link;
 				}
 
+				if ( 'telegram' == $social_platform ) {
+					$social_link = 'https://t.me/' . $social_link;
+				}
+
 				if ( ! empty( $social_link ) ) {
 					echo Simple_Author_Box_Helper::get_sabox_social_icon( $social_link, $social_platform );
 				}

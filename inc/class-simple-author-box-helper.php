@@ -53,6 +53,7 @@ class Simple_Author_Box_Helper {
 		'snapchat'      => 'Snapchat',
 		'500px'         => '500px',
 		'mastodont'     => 'Mastodon',
+		'telegram'      => 'Telegram',
 	);
 
 	public static function get_sabox_social_icon( $url, $icon_name ) {
