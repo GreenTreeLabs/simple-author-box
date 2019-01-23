@@ -1,4 +1,5 @@
 <?php
+
 class Simple_Author_Box_Widget_LITE extends WP_Widget {
 
     var $defaults;
@@ -8,6 +9,12 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
         $control_ops = array('id_base' => 'simple_author_box_widget_lite');
         parent::__construct('simple_author_box_widget_lite', __('Simple Author Box LITE', 'saboxplugin'), $widget_ops, $control_ops);
 
+        $defaults = array(
+            'title' => __('About Author', 'saboxplugin')
+        );
+
+        $this->defaults = $defaults;
+
     }
 
 
@@ -15,7 +22,7 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
 
         extract($args);
         $instance = wp_parse_args((array)$instance, $this->defaults);
-        echo '<p>'.$instance['title'].'</p>';
+        echo '<p>' . $instance['title'] . '</p>';
         include SIMPLE_AUTHOR_BOX_PATH . 'template/template-sab.php';
 
     }
@@ -31,8 +38,10 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
 
         $instance = wp_parse_args((array)$instance, $this->defaults); ?>
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'saboxplugin'); ?>:</label>
-            <input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'saboxplugin'); ?>:</label>
+            <input id="<?php echo $this->get_field_id('title'); ?>" type="text"
+                   name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>"
+                   class="widefat"/>
         </p>
         <?php do_action('sab_widget_add_opts', $this, $instance); ?>
         <?php
