@@ -84,6 +84,12 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
+                'sabox_author_different_description' => array(
+                    'label'       => __( 'Show a different texts on author page and post author', 'saboxplugin' ),
+                    'description' => __( 'When turned ON, the author box will show Author page user description .', 'saboxplugin' ),
+                    'type'        => 'toggle',
+                    'group'       => 'saboxplugin_options',
+                ),
 			),
 			'appearance-options'    => array(
 				'sab_box_margin_top'         => array(

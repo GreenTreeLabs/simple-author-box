@@ -59,7 +59,12 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		// author box description
 		echo '<div class="saboxplugin-desc">';
 		echo '<div itemprop="description">';
-		$description = get_the_author_meta( 'description', $sabox_author_id );
+		if( '0' == $sabox_options['sabox_author_different_description']){
+            $description = get_the_author_meta( 'description', $sabox_author_id );
+        } else {
+            $description = get_the_author_meta( 'sabox_author_different_description', $sabox_author_id );
+        }
+
 		$description = wptexturize( $description );
 		$description = wpautop( $description );
 		echo wp_kses_post( $description );
