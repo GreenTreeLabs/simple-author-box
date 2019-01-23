@@ -6,7 +6,7 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
     function __construct() {
         $widget_ops  = array('classname' => 'simple_author_box_widget_lite', 'description' => __('Use this widget to display Simple Author Box', 'saboxplugin'));
         $control_ops = array('id_base' => 'simple_author_box_widget_lite');
-        parent::__construct('simple_author_box_widget', __('Simple Author Box LITE', 'saboxplugin'), $widget_ops, $control_ops);
+        parent::__construct('simple_author_box_widget_lite', __('Simple Author Box LITE', 'saboxplugin'), $widget_ops, $control_ops);
 
     }
 
@@ -23,7 +23,6 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
     function update($new_instance, $old_instance) {
         $instance          = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
-
 
         return $instance;
     }

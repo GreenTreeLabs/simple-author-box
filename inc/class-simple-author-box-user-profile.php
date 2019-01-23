@@ -3,14 +3,17 @@
 class Simple_Author_Box_User_Profile {
 
     function __construct() {
-
+        $sabox_options = Simple_Author_Box_Helper::get_option('saboxplugin_options');
         // Social Links
         add_action('show_user_profile', array($this, 'add_social_area'));
         add_action('edit_user_profile', array($this, 'add_social_area'));
 
         // Author page description
-        add_action('show_user_profile', array($this, 'author_page_text'));
-        add_action('edit_user_profile', array($this, 'author_page_text'));
+        if (isset($sabox_options['sabox_author_different_description']) && $sabox_options['sabox_author_different_description'] == '1') {
+            add_action('show_user_profile', array($this, 'author_page_text'));
+            add_action('edit_user_profile', array($this, 'author_page_text'));
+        }
+
 
         // Custom Profile Image
         add_action('show_user_profile', array($this, 'add_profile_image'), 9, 1);
