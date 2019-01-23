@@ -19,10 +19,13 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
 
 
     function widget($args, $instance) {
+        global $post;
 
         extract($args);
         $instance = wp_parse_args((array)$instance, $this->defaults);
+        $sabox_author_id      = $post->post_author;
         echo '<p>' . $instance['title'] . '</p>';
+        $sabox_options = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
         include SIMPLE_AUTHOR_BOX_PATH . 'template/template-sab.php';
 
     }
