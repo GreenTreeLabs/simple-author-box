@@ -57,8 +57,7 @@ class Simple_Author_Box_User_Profile {
                                 <input name="sabox-social-links[]"
                                        type="<?php echo ('whatsapp' == $social_platform) ? 'tel' : 'text'; ?>"
                                        class="regular-text"
-                                       value="<?php echo ('whatsapp' == $social_platform) ? $social_link : esc_url($social_link); ?>">
-
+                                       value="<?php echo ( 'whatsapp' == $social_platform  || 'telegram' == $social_platform ) ? $social_link : esc_url( $social_link ); ?>">
                                 <span class="dashicons dashicons-trash"></span>
                             <td>
                         </tr>
@@ -177,7 +176,21 @@ class Simple_Author_Box_User_Profile {
                 }
             }
 
-            update_user_meta($user_id, 'sabox_social_links', $social_links);
+			$social_platforms = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
+			$social_links     = array();
+			foreach ( $_POST['sabox-social-links'] as $index => $social_link ) {
+				if ( $social_link ) {
+					$social_platform = isset( $_POST['sabox-social-icons'][ $index ] ) ? $_POST['sabox-social-icons'][ $index ] : false;
+					if ( $social_platform && isset( $social_platforms[ $social_platform ] ) ) {
+						if ( 'whatsapp' == $social_platform  || 'telegram' == $social_platform ) {
+							$social_links[ $social_platform ] = $social_link;
+						} else {
+							$social_links[ $social_platform ] = esc_url_raw( $social_link );
+						}
+					}
+				}
+			}
+        update_user_meta($user_id, 'sabox_social_links', $social_links);
 
         } else {
             delete_user_meta($user_id, 'sabox_social_links');
