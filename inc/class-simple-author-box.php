@@ -17,9 +17,15 @@ class Simple_Author_Box {
 		$this->define_admin_hooks();
 
 		add_action( 'init', array( $this, 'define_public_hooks' ) );
+        add_action('widgets_init',array($this,'sab_lite_register_widget'));
 
 
 	}
+
+	// Register Simple Author Box widget
+	public function sab_lite_register_widget(){
+        register_widget('Simple_Author_Box_Widget_LITE');
+    }
 
 	/**
 	 * Singleton pattern
@@ -39,8 +45,10 @@ class Simple_Author_Box {
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-social.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-helper.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/functions.php';
+        require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-widget.php';
 
-		// everything below this line gets loaded only in the admin back-end
+
+        // everything below this line gets loaded only in the admin back-end
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-user-profile.php';
@@ -49,6 +57,7 @@ class Simple_Author_Box {
 		}
 
 	}
+
 
 	/**
 	 * Admin hooks
