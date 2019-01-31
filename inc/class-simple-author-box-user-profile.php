@@ -144,9 +144,9 @@ class Simple_Author_Box_User_Profile {
             <h3><?php _e('Author page user description (Simple Author Box)', 'saboxplugin'); ?></h3>
             <table class="form-table">
                 <tr>
-                    <th><label for="cupp_meta"><?php _e('Author description', 'saboxplugin'); ?></label></th>
+                    <th><label for="cupp_meta"><?php _e('Custom Biography', 'saboxplugin'); ?></label></th>
                     <td>
-                        <textarea id="sabox_author_different_description"
+                        <textarea id="sabox_author_different_description" class="sab-editor"
                                   name="sabox_author_different_description"><?php echo $author_page_description; ?></textarea>
                     </td>
                 </tr>
