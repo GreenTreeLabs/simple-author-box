@@ -43,18 +43,18 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
 
         $instance = wp_parse_args((array)$instance, $this->defaults); ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'saboxplugin'); ?>:</label>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php echo esc_html__('Title', 'saboxplugin'); ?>:</label>
             <input id="<?php echo $this->get_field_id('title'); ?>" type="text"
-                   name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>"
+                   name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr__($instance['title']); ?>"
                    class="widefat"/>
         </p>
         <p>
             <?php $authors = get_users(); ?>
-            <label for="<?php echo $this->get_field_id('author'); ?>"><?php _e('Choose author/user', 'saboxplugin'); ?>
+            <label for="<?php echo $this->get_field_id('author'); ?>"><?php echo esc_html__('Choose author/user', 'saboxplugin'); ?>
                 :</label>
             <select name="<?php echo $this->get_field_name('author'); ?>"
                     id="<?php echo $this->get_field_id('author'); ?>" class="widefat">
-                <option value="auto" ><?php _e('Autodetect', 'saboxplugin'); ?></option>
+                <option value="auto" ><?php echo esc_html__('Autodetect', 'saboxplugin'); ?></option>
                 <?php foreach ($authors as $author) : ?>
                     <option value="<?php echo $author->ID; ?>" <?php selected($author->ID, $instance['author']); ?>><?php echo $author->data->user_login; ?></option>
                 <?php endforeach; ?>
