@@ -40,12 +40,15 @@ class Simple_Author_Box {
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-helper.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/functions.php';
 
+		if ( ! defined( 'SIMPLE_AUTHOR_BOX_PRO_VERSION' ) ) {
+			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-block.php';
+		}
+
 		// everything below this line gets loaded only in the admin back-end
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-user-profile.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-previewer.php';
-
 		}
 
 	}
@@ -365,7 +368,7 @@ class Simple_Author_Box {
 
 				}
 			}
-			
+
 			$html = ob_get_clean();
 
 		} else {
