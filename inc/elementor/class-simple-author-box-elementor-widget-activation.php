@@ -12,11 +12,26 @@ class SAB_Elementor_Widget_Activation {
         if (is_null(self::$_instance)) {
             self::$_instance = new self();
         }
+
         return self::$_instance;
+    }
+
+    public function define_sab_elementor_fiters(){
+        apply_filter('sab_elementor_types','sab_elementor_post_type');
     }
 
     private function include_widgets_files() {
         require_once(SIMPLE_AUTHOR_BOX_PATH . 'inc/elementor/widgets/class-simple-author-box-elementor.php');
+    }
+
+    public function sab_elementor_post_type(){
+        $queried_obj = get_post_type();
+        $main_posts = array('post');
+        $available_posts = apply_filters('sab_elementor_types',$main_posts);
+        if(in_array($queried_obj,$available_posts)){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -31,9 +46,7 @@ class SAB_Elementor_Widget_Activation {
         $this->include_widgets_files();
 
         // Register Widgets
-        $queried_obj = get_post_type();
-        // TODO need to check for pro version and modify the if statement
-        if('post' == $queried_obj){
+        if($this->sab_elementor_post_type()){
             \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\SAB_Elementor_Widget());
         }
 
