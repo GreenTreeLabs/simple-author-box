@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class SAB_Elementor_Widget extends Widget_Base {
+class SAB_Elementor_Widget extends \Elementor\Widget_Base {
 
     public function get_name() {
         return 'simple_author_box_elementor';
@@ -38,7 +38,7 @@ class SAB_Elementor_Widget extends Widget_Base {
         );
 
         $this->add_control(
-            'author',
+            'sab_author',
             [
                 'label'   => __('Select author', 'saboxplugin'),
                 'type'    => \Elementor\Controls_Manager::SELECT,
@@ -51,8 +51,9 @@ class SAB_Elementor_Widget extends Widget_Base {
     }
 
     protected function render() {
-
-        echo wpsabox_author_box();
+        $settings = $this->get_settings_for_display();
+        $author = $settings['sab_author'];
+        echo do_shortcode('[simple-author-box ids="'.$author.'"]');
     }
 
     protected function _content_template() {
