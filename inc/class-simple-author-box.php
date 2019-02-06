@@ -3,6 +3,8 @@
 /**
  * Our main plugin class
  */
+if( !defined( 'ABSPATH' ) ) exit;
+
 class Simple_Author_Box {
 
 	private static $instance = null;
@@ -39,6 +41,7 @@ class Simple_Author_Box {
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-social.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-helper.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/functions.php';
+        require_once SIMPLE_AUTHOR_BOX_PATH . '/inc/elementor/class-simple-author-box-elementor-check.php';
 
 		// everything below this line gets loaded only in the admin back-end
 		if ( is_admin() ) {
