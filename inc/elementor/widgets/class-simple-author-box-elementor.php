@@ -1,9 +1,11 @@
 <?php
+
 namespace ElementorSAB\Widgets;
+
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
@@ -14,7 +16,7 @@ class SAB_Elementor_Widget extends Widget_Base {
     }
 
     public function get_title() {
-        return __( 'Simple Author Box', 'saboxplugin' );
+        return __('Simple Author Box', 'saboxplugin');
     }
 
     public function get_icon() {
@@ -22,25 +24,26 @@ class SAB_Elementor_Widget extends Widget_Base {
     }
 
     public function get_categories() {
-        return [ 'general' ];
+        return ['general'];
 
     }
+
     protected function _register_controls() {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => __( 'Content', 'saboxplugin' ),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                'label' => __('Content', 'saboxplugin'),
+                'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
         $this->add_control(
-            'url',
+            'author',
             [
-                'label' => __( 'URL to embed', 'saboxplugin' ),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'input_type' => 'url',
-                'placeholder' => __( 'https://your-link.com', 'saboxplugin' ),
+                'label'   => __('Select author', 'saboxplugin'),
+                'type'    => \Elementor\Controls_Manager::SELECT,
+                'options' => $this->sab_get_authors(),
+                'default' => 'auto',
             ]
         );
 
@@ -48,11 +51,21 @@ class SAB_Elementor_Widget extends Widget_Base {
     }
 
     protected function render() {
+
         echo wpsabox_author_box();
     }
 
     protected function _content_template() {
         return wpsabox_author_box();
+    }
+
+    public function sab_get_authors(){
+        $authors = get_users();
+        $author_array = array('auto' => 'Autoselect');
+         foreach ($authors as $author){
+             $author_array[$author->ID] = $author->data->user_login;
+         }
+         return $author_array;
     }
 
 }
