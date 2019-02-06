@@ -12,7 +12,6 @@ if ( ! function_exists( 'wpsabox_author_box' ) ) {
 
 
 	function wpsabox_author_box( $saboxmeta = null ) {
-
 		$show = ( is_single() || is_author() || is_archive() );
 
 		/**

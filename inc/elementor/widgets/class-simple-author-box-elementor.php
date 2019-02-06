@@ -62,16 +62,16 @@ class SAB_Elementor_Widget extends \Elementor\Widget_Base {
     }
 
     protected function _content_template() {
-        return wpsabox_author_box();
+        echo wpsabox_author_box();
     }
 
-    public function sab_get_authors(){
-        $authors = get_users();
+    public function sab_get_authors() {
+        $authors      = get_users();
         $author_array = array('auto' => 'Autoselect');
-         foreach ($authors as $author){
-             $author_array[$author->ID] = $author->data->user_login;
-         }
-         return $author_array;
+        foreach ($authors as $author) {
+            $author_array[$author->ID] = $author->data->user_login;
+        }
+        return $author_array;
     }
 
 }

@@ -44,7 +44,6 @@ class SAB_Elementor_Widget_Activation {
      */
     public function register_widgets() {
         $this->include_widgets_files();
-
         // Register Widgets
         if($this->sab_elementor_post_type()){
             \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\SAB_Elementor_Widget());
