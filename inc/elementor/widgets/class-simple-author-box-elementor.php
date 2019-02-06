@@ -52,8 +52,13 @@ class SAB_Elementor_Widget extends \Elementor\Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
-        $author = $settings['sab_author'];
-        echo do_shortcode('[simple-author-box ids="'.$author.'"]');
+        $author   = $settings['sab_author'];
+        if ('auto' != $author) {
+            echo do_shortcode('[simple-author-box ids="' . $author . '"]');
+        } else {
+            echo wpsabox_author_box();
+        }
+
     }
 
     protected function _content_template() {
