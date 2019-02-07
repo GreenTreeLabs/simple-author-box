@@ -84,6 +84,12 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
+                'sabox_author_different_description' => array(
+                    'label'       => __( 'Use custom biography', 'saboxplugin' ),
+                    'description' => __( 'When turned ON a textarea for custom biography will be available when editing a user\'s profile. The Custom Biography will be displayed inside the Author Box so you can use WordPress\' default biography field for the author page, for example.', 'saboxplugin' ),
+                    'type'        => 'toggle',
+                    'group'       => 'saboxplugin_options',
+                ),
 			),
 			'appearance-options'    => array(
 				'sab_box_margin_top'         => array(
