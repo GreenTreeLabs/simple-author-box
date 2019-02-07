@@ -52,19 +52,24 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		echo '<div class="saboxplugin-authorname">';
 		echo apply_filters( 'sabox_author_html', $sab_author_link, $sabox_options, $sabox_author_id );
 		if ( is_user_logged_in() && get_current_user_id() == $sabox_author_id ) {
-			echo '<a  class="sab-profile-edit" target="_blank" href="' . get_edit_user_link() . '"> ' . __( 'Edit profile', 'saboxplugin' ) . '</a>';
+			echo '<a  class="sab-profile-edit" target="_blank" href="' . get_edit_user_link() . '"> ' . esc_html__( 'Edit profile', 'saboxplugin' ) . '</a>';
 		}
 		echo '</div>';
 
 		// author box description
 		echo '<div class="saboxplugin-desc">';
 		echo '<div itemprop="description">';
-		$description = get_the_author_meta( 'description', $sabox_author_id );
+		if( isset($sabox_options['sabox_author_different_description']) && '0' == $sabox_options['sabox_author_different_description']){
+            $description = get_the_author_meta( 'description', $sabox_author_id );
+        } else {
+            $description = get_the_author_meta( 'sabox_author_different_description', $sabox_author_id );
+        }
+
 		$description = wptexturize( $description );
 		$description = wpautop( $description );
 		echo wp_kses_post( $description );
 		if ( $description == "" && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
-			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#wp-description-wrap">' . __( 'Add Biographical Info', 'saboxplugin' ) . '</a>';
+			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#wp-description-wrap">' . esc_html__( 'Add Biographical Info', 'saboxplugin' ) . '</a>';
 		}
 		echo '</div>';
 		echo '</div>';
@@ -96,7 +101,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 		if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
 			echo '<div class="sab-edit-settings">';
-			echo '<a target="_blank" href="' . admin_url() . 'admin.php?page=simple-author-box-options">' . __( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
+			echo '<a target="_blank" href="' . admin_url() . 'admin.php?page=simple-author-box-options">' . esc_html__( 'Settings', 'saboxplugin' ) . '<i class="dashicons dashicons-admin-settings"></i></a>';
 			echo '</div>';
 		}
 
@@ -104,10 +109,10 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, $show_email );
 
 		if ( empty( $social_links ) && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
-			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#sabox-social-table">' . __( 'Add Social Links', 'saboxplugin' ) . '</a>';
+			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#sabox-social-table">' . esc_html__( 'Add Social Links', 'saboxplugin' ) . '</a>';
 		}
 
-		if ( '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
+		if ( isset($sabox_options['sab_hide_socials']) && '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
 			echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
 
 			foreach ( $social_links as $social_platform => $social_link ) {
@@ -118,6 +123,10 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 
 				if ( 'whatsapp' == $social_platform ) {
 					$social_link = 'https://wa.me/' . $social_link;
+				}
+
+				if ( 'telegram' == $social_platform ) {
+					$social_link = 'https://t.me/' . $social_link;
 				}
 
 				if ( ! empty( $social_link ) ) {

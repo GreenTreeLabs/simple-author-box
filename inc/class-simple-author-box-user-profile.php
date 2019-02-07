@@ -2,70 +2,76 @@
 
 class Simple_Author_Box_User_Profile {
 
-	function __construct() {
+    function __construct() {
+        $sabox_options = Simple_Author_Box_Helper::get_option('saboxplugin_options');
+        // Social Links
+        add_action('show_user_profile', array($this, 'add_social_area'));
+        add_action('edit_user_profile', array($this, 'add_social_area'));
 
-		// Social Links
-		add_action( 'show_user_profile', array( $this, 'add_social_area' ) );
-		add_action( 'edit_user_profile', array( $this, 'add_social_area' ) );
+        // Author page description
+        if (isset($sabox_options['sabox_author_different_description']) && $sabox_options['sabox_author_different_description'] == '1') {
+            add_action('show_user_profile', array($this, 'author_page_text'));
+            add_action('edit_user_profile', array($this, 'author_page_text'));
+        }
 
-		// Custom Profile Image
-		add_action( 'show_user_profile', array( $this, 'add_profile_image' ), 9, 1 );
-		add_action( 'edit_user_profile', array( $this, 'add_profile_image' ), 9, 1 );
 
-		add_action( 'personal_options_update', array( $this, 'save_user_profile' ) );
-		add_action( 'edit_user_profile_update', array( $this, 'save_user_profile' ) );
+        // Custom Profile Image
+        add_action('show_user_profile', array($this, 'add_profile_image'), 9, 1);
+        add_action('edit_user_profile', array($this, 'add_profile_image'), 9, 1);
 
-		// Allow HTML in user description.
-		remove_filter( 'pre_user_description', 'wp_filter_kses' );
-		add_filter( 'pre_user_description', 'wp_kses_post' );
+        add_action('personal_options_update', array($this, 'save_user_profile'));
+        add_action('edit_user_profile_update', array($this, 'save_user_profile'));
 
-	}
+        // Allow HTML in user description.
+        remove_filter('pre_user_description', 'wp_filter_kses');
+        add_filter('pre_user_description', 'wp_kses_post');
 
-	public function add_social_area( $profileuser ) {
-		$user_id = $profileuser->data->ID;
+    }
 
-		$social_links = Simple_Author_Box_Helper::get_user_social_links( $user_id );
-		$social_icons = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
-		unset( $social_icons['user_email'] );
+    public function add_social_area($profileuser) {
+        $user_id = $profileuser->data->ID;
 
-		?>
+        $social_links = Simple_Author_Box_Helper::get_user_social_links($user_id);
+        $social_icons = apply_filters('sabox_social_icons', Simple_Author_Box_Helper::$social_icons);
+        unset($social_icons['user_email']);
+
+        ?>
         <div class="sab-user-profile-wrapper">
-            <h2><?php _e( 'Social Media Links (Simple Author Box)', 'saboxplugin' ); ?></h2>
+            <h2><?php esc_html_e('Social Media Links (Simple Author Box)', 'saboxplugin'); ?></h2>
             <table class="form-table" id="sabox-social-table">
-				<?php
+                <?php
 
-				if ( ! empty( $social_links ) ) {
-					foreach ( $social_links as $social_platform => $social_link ) {
-						?>
+                if (!empty($social_links)) {
+                    foreach ($social_links as $social_platform => $social_link) {
+                        ?>
                         <tr>
                             <th>
                                 <span class="sabox-drag"></span>
                                 <select name="sabox-social-icons[]">
-									<?php foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) { ?>
-                                        <option value="<?php echo $sabox_social_id; ?>" <?php selected( $sabox_social_id, $social_platform ); ?>><?php echo $sabox_social_name; ?></option>
-									<?php } ?>
+                                    <?php foreach ($social_icons as $sabox_social_id => $sabox_social_name) { ?>
+                                        <option value="<?php echo esc_attr($sabox_social_id); ?>" <?php selected($sabox_social_id, $social_platform); ?>><?php echo esc_html($sabox_social_name); ?></option>
+                                    <?php } ?>
                                 </select>
                             </th>
                             <td>
                                 <input name="sabox-social-links[]"
-                                       type="<?php echo ( 'whatsapp' == $social_platform ) ? 'tel' : 'text'; ?>"
+                                       type="<?php echo ('whatsapp' == $social_platform) ? 'tel' : 'text'; ?>"
                                        class="regular-text"
-                                       value="<?php echo ( 'whatsapp' == $social_platform ) ? $social_link : esc_url( $social_link ); ?>">
-
+                                       value="<?php echo ( 'whatsapp' == $social_platform  || 'telegram' == $social_platform ) ? esc_attr($social_link) : esc_url( $social_link ); ?>">
                                 <span class="dashicons dashicons-trash"></span>
                             <td>
                         </tr>
-						<?php
-					}
-				} else {
-					?>
+                        <?php
+                    }
+                } else {
+                    ?>
                     <tr>
                         <th>
                             <span class="sabox-drag"></span>
                             <select name="sabox-social-icons[]">
-								<?php foreach ( $social_icons as $sabox_social_id => $sabox_social_name ) { ?>
-                                    <option value="<?php echo $sabox_social_id; ?>"><?php echo $sabox_social_name; ?></option>
-								<?php } ?>
+                                <?php foreach ($social_icons as $sabox_social_id => $sabox_social_name) { ?>
+                                    <option value="<?php echo esc_attr($sabox_social_id); ?>"><?php echo esc_html($sabox_social_name); ?></option>
+                                <?php } ?>
                             </select>
                         </th>
                         <td>
@@ -73,63 +79,101 @@ class Simple_Author_Box_User_Profile {
                             <span class="dashicons dashicons-trash"></span>
                         <td>
                     </tr>
-					<?php
-				}
+                    <?php
+                }
 
-				?>
+                ?>
 
             </table>
 
             <div class="sabox-add-social-link">
                 <a href="#"
-                   class="button button-primary button-hero"></span><?php esc_html_e( '+ Add new social platform', 'saboxplugin' ); ?></a>
+                   class="button button-primary button-hero"></span><?php esc_html_e('+ Add new social platform', 'saboxplugin'); ?></a>
             </div>
         </div>
 
-		<?php
-	}
+        <?php
+    }
 
-	public function add_profile_image( $user ) {
+    public function add_profile_image($user) {
 
-		if ( ! current_user_can( 'upload_files' ) ) {
-			return;
-		}
+        if (!current_user_can('upload_files')) {
+            return;
+        }
 
-		$default_url = SIMPLE_AUTHOR_BOX_ASSETS . 'img/default.png';
-		$image       = get_user_meta( $user->ID, 'sabox-profile-image', true );
+        $default_url = SIMPLE_AUTHOR_BOX_ASSETS . 'img/default.png';
+        $image       = get_user_meta($user->ID, 'sabox-profile-image', true);
 
-		?>
+        ?>
 
         <div id="sabox-custom-profile-image">
-            <h3><?php _e( 'Custom User Profile Image (Simple Author Box)', 'saboxplugin' ); ?></h3>
+            <h3><?php esc_html_e('Custom User Profile Image (Simple Author Box)', 'saboxplugin'); ?></h3>
             <table class="form-table">
                 <tr>
-                    <th><label for="cupp_meta"><?php _e( 'Profile Image', 'saboxplugin' ); ?></label></th>
+                    <th><label for="cupp_meta"><?php esc_html_e('Profile Image', 'saboxplugin'); ?></label></th>
                     <td>
                         <div id="sab-current-image">
-							<?php wp_nonce_field( 'sabox-profile-image', 'sabox-profile-nonce' ); ?>
-                            <img data-default="<?php echo esc_url_raw( $default_url ); ?>"
-                                 src="<?php echo '' != $image ? esc_url_raw( $image ) : esc_url_raw( $default_url ); ?>"><br>
+                            <?php wp_nonce_field('sabox-profile-image', 'sabox-profile-nonce'); ?>
+                            <img data-default="<?php echo esc_url_raw($default_url); ?>"
+                                 src="<?php echo '' != $image ? esc_url_raw($image) : esc_url_raw($default_url); ?>"><br>
                             <input type="text" name="sabox-custom-image" id="sabox-custom-image" class="regular-text"
-                                   value="<?php echo esc_attr( $image ); ?>">
+                                   value="<?php echo esc_attr($image); ?>">
                         </div>
                         <div class="actions">
                             <a href="#" class="button-secondary"
-                               id="sabox-remove-image"><?php _e( 'Remove Image', 'saboxplugin' ); ?></a>
+                               id="sabox-remove-image"><?php esc_html_e('Remove Image', 'saboxplugin'); ?></a>
                             <a href="#" class="button-primary"
-                               id="sabox-add-image"><?php _e( 'Upload Image', 'saboxplugin' ); ?></a>
+                               id="sabox-add-image"><?php esc_html_e('Upload Image', 'saboxplugin'); ?></a>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
 
-		<?php
-	}
+        <?php
+    }
 
-	public function save_user_profile( $user_id ) {
 
-		if ( isset( $_POST['sabox-social-icons'] ) && isset( $_POST['sabox-social-links'] ) ) {
+    // User description for author page.
+    public function author_page_text($user) {
+
+        $author_page_description = get_user_meta($user->ID, 'sabox_author_different_description', true);
+
+        ?>
+        <div id="sabox-custom-profile-image">
+            <h3><?php esc_html_e('Author page user description (Simple Author Box)', 'saboxplugin'); ?></h3>
+            <table class="form-table">
+                <tr>
+                    <th><label for="cupp_meta"><?php esc_html_e('Custom Biography', 'saboxplugin'); ?></label></th>
+                    <td>
+                        <textarea id="sabox_author_different_description" class="sab-editor" name="sabox_author_different_description"><?php echo wp_kses_post($author_page_description); ?></textarea>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <?php
+    }
+
+    public function save_user_profile($user_id) {
+
+        if (isset($_POST['sabox-social-icons']) && isset($_POST['sabox-social-links'])) {
+
+            $social_platforms = apply_filters('sabox_social_icons', Simple_Author_Box_Helper::$social_icons);
+            $social_links     = array();
+            foreach ($_POST['sabox-social-links'] as $index => $social_link) {
+                if ($social_link) {
+                    $social_platform = isset($_POST['sabox-social-icons'][$index]) ? $_POST['sabox-social-icons'][$index] : false;
+                    if ($social_platform && isset($social_platforms[$social_platform])) {
+                        if ('whatsapp' == $social_platform) {
+                            $social_links[$social_platform] = esc_html($social_link);
+                        } else {
+                            $social_links[$social_platform] = esc_url_raw($social_link);
+                        }
+                    }
+                }
+            }
 
 			$social_platforms = apply_filters( 'sabox_social_icons', Simple_Author_Box_Helper::$social_icons );
 			$social_links     = array();
@@ -137,37 +181,42 @@ class Simple_Author_Box_User_Profile {
 				if ( $social_link ) {
 					$social_platform = isset( $_POST['sabox-social-icons'][ $index ] ) ? $_POST['sabox-social-icons'][ $index ] : false;
 					if ( $social_platform && isset( $social_platforms[ $social_platform ] ) ) {
-						if ( 'whatsapp' == $social_platform ) {
-							$social_links[ $social_platform ] = $social_link;
+						if ( 'whatsapp' == $social_platform  || 'telegram' == $social_platform ) {
+							$social_links[ $social_platform ] = esc_html($social_link);
 						} else {
 							$social_links[ $social_platform ] = esc_url_raw( $social_link );
 						}
 					}
 				}
 			}
+        update_user_meta($user_id, 'sabox_social_links', $social_links);
 
-			update_user_meta( $user_id, 'sabox_social_links', $social_links );
+        } else {
+            delete_user_meta($user_id, 'sabox_social_links');
+        }
 
-		} else {
-			delete_user_meta( $user_id, 'sabox_social_links' );
-		}
+        if (!isset($_POST['sabox-profile-nonce']) || !wp_verify_nonce($_POST['sabox-profile-nonce'], 'sabox-profile-image')) {
+            return;
+        }
 
-		if ( ! isset( $_POST['sabox-profile-nonce'] ) || ! wp_verify_nonce( $_POST['sabox-profile-nonce'], 'sabox-profile-image' ) ) {
-			return;
-		}
+        if (!current_user_can('upload_files', $user_id)) {
+            return;
+        }
 
-		if ( ! current_user_can( 'upload_files', $user_id ) ) {
-			return;
-		}
+        if (isset($_POST['sabox-custom-image']) && '' != $_POST['sabox-custom-image']) {
+            update_user_meta($user_id, 'sabox-profile-image', esc_url_raw($_POST['sabox-custom-image']));
+        } else {
+            delete_user_meta($user_id, 'sabox-profile-image');
+        }
 
-		if ( isset( $_POST['sabox-custom-image'] ) && '' != $_POST['sabox-custom-image'] ) {
-			update_user_meta( $user_id, 'sabox-profile-image', esc_url_raw( $_POST['sabox-custom-image'] ) );
-		} else {
-			delete_user_meta( $user_id, 'sabox-profile-image' );
-		}
+        if (isset($_POST['sabox_author_different_description']) && '' != $_POST['sabox_author_different_description']) {
+            update_user_meta($user_id, 'sabox_author_different_description', wp_filter_post_kses( $_POST['sabox_author_different_description'] ) );
+        } else {
+            delete_user_meta($user_id, 'sabox_author_different_description');
+        }
 
 
-	}
+    }
 
 }
 
