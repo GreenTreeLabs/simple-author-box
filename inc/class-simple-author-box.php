@@ -180,7 +180,7 @@ class Simple_Author_Box {
 			add_filter( 'the_content', 'wpsabox_author_box' );
 		}
 
-		if ( '0' == $this->options['sab_footer_inline_style'] ) {
+		if ( isset($this->options['sab_footer_inline_style']) && '0' == $this->options['sab_footer_inline_style'] ) {
 			add_action(
 				'wp_footer', array(
 				$this,
