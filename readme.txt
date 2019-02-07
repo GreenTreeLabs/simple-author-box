@@ -62,6 +62,10 @@ The Simple Author Box plugin was designed to display the author information on p
 
 You should add there your phone number, for more information read <a href="https://faq.whatsapp.com/en/android/26000030/" target="_blank">this</a>
 
+= What should I add for Telegram ? =
+
+You should add there your username, for more information read <a href="https://telegram.org/faq#q-how-does-t-me-work" target="_blank">this</a>
+
 = Can I remove the SAB from WooCommerce/Category/Tags pages? Can I have only on posts? =
 
 The PRO version of Simple Author Box fixes this.

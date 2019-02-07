@@ -19,9 +19,15 @@ class Simple_Author_Box {
 		$this->define_admin_hooks();
 
 		add_action( 'init', array( $this, 'define_public_hooks' ) );
+        add_action('widgets_init',array($this,'sab_lite_register_widget'));
 
 
 	}
+
+	// Register Simple Author Box widget
+	public function sab_lite_register_widget(){
+        register_widget('Simple_Author_Box_Widget_LITE');
+    }
 
 	/**
 	 * Singleton pattern
@@ -41,17 +47,22 @@ class Simple_Author_Box {
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-social.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-helper.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/functions.php';
-        require_once SIMPLE_AUTHOR_BOX_PATH . '/inc/elementor/class-simple-author-box-elementor-check.php';
+    require_once SIMPLE_AUTHOR_BOX_PATH . '/inc/elementor/class-simple-author-box-elementor-check.php';
+    require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-widget.php';
 
-		// everything below this line gets loaded only in the admin back-end
+		if ( ! defined( 'SIMPLE_AUTHOR_BOX_PRO_VERSION' ) ) {
+			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-block.php';
+		}
+    
+    // everything below this line gets loaded only in the admin back-end
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-user-profile.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-previewer.php';
-
 		}
 
 	}
+
 
 	/**
 	 * Admin hooks
@@ -164,7 +175,6 @@ class Simple_Author_Box {
 	public function define_public_hooks() {
 
 		$this->options                            = Simple_Author_Box_Helper::get_option( 'saboxplugin_options' );
-		$this->options['sab_footer_inline_style'] = Simple_Author_Box_Helper::get_option( 'sab_footer_inline_style' );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'saboxplugin_author_box_style' ), 10 );
 		add_shortcode( 'simple-author-box', array( $this, 'shortcode' ) );
@@ -175,7 +185,7 @@ class Simple_Author_Box {
 			add_filter( 'the_content', 'wpsabox_author_box' );
 		}
 
-		if ( '0' == $this->options['sab_footer_inline_style'] ) {
+		if ( isset($this->options['sab_footer_inline_style']) && '0' == $this->options['sab_footer_inline_style'] ) {
 			add_action(
 				'wp_footer', array(
 				$this,
@@ -368,7 +378,7 @@ class Simple_Author_Box {
 
 				}
 			}
-			
+
 			$html = ob_get_clean();
 
 		} else {
