@@ -25,7 +25,7 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 
 // widget condition
 if(isset($instance)){
-    if( $instance['author'] != 0 ){
+    if( isset($instance['author']) &&  $instance['author'] != 0 ){
         $sabox_author_id = $instance['author'];
     } else {
         $obj = get_queried_object();
@@ -69,7 +69,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		// author box description
 		echo '<div class="saboxplugin-desc">';
 		echo '<div itemprop="description">';
-		if( '0' == $sabox_options['sabox_author_different_description']){
+		if( isset($sabox_options['sabox_author_different_description']) && '0' == $sabox_options['sabox_author_different_description']){
             $description = get_the_author_meta( 'description', $sabox_author_id );
         } else {
             $description = get_the_author_meta( 'sabox_author_different_description', $sabox_author_id );
@@ -122,7 +122,7 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#sabox-social-table">' . __( 'Add Social Links', 'saboxplugin' ) . '</a>';
 		}
 
-		if ( '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
+		if ( isset($sabox_options['sab_hide_socials']) && '0' == $sabox_options['sab_hide_socials'] && $show_social_icons && ! empty( $social_links ) ) { // hide social icons div option
 			echo '<div class="saboxplugin-socials ' . esc_attr( $sabox_color ) . '">';
 
 			foreach ( $social_links as $social_platform => $social_link ) {
