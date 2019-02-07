@@ -3,7 +3,7 @@ Contributors: machothemes, silkalns
 Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
 Requires PHP: 5.6
-Stable tag: 2.2.2
+Stable tag: 2.3.0
 Tested up to: 5.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,20 +26,24 @@ Adds a cool responsive author box with social icons on your posts.
 
 = Simple Author Box Pro Features =
 
-* Change author box position to before/after content
-* Choose whether the author's name should link to its website/page/none
-* Select where to show author box on
-* Add rotate effect on author avatar hover
-* Option to open author website link in a new tab
-* Option to add "nofollow" attribute on author website link
-* Choose the author website's position: right/left
-* Social icons type, style, rotate effect, shadow effect, thin border
-* Option to change the color palette
-* Choose the font and font sizes for the author's job title, website, name, and description
-* Enable guest authors and co-authors
-* Option to use guest authors as co-authors
-* Top authors widget - displays the most popular authors based of comments
-* Simple author box widget - displays the users selected
+> **Premium features only available in Simple Author Box Pro:**
+>
+> * Change author box position to before/after content
+> * Choose whether the author's name should link to its website/page/none
+> * Select where to show author box on
+> * Add rotate effect on author avatar hover
+> * Option to open author website link in a new tab
+> * Option to add "nofollow" attribute on author website link
+> * Choose the author website's position: right/left
+> * Social icons type, style, rotate effect, shadow effect, thin border
+> * Option to change the color palette
+> * Choose the font and font sizes for the author's job title, website, name, and description
+> * Enable guest authors and co-authors
+> * Option to use guest authors as co-authors
+> * Top authors widget - displays the most popular authors based of comments
+> * Simple author box widget - displays the users selected
+>
+>**[Learn more about Simple Author Box Pro.](https://www.machothemes.com/item/simple-author-box-pro?utm_source=wordpress.org&utm_medium=web&utm_campaign=SABLITE)**
 
 **About us:**
 We are a young team of WordPress aficionados who love building WordPress plugins & <a href="https://www.machothemes.com/" target="_blank" title="Premium WordPress themes">Premium WordPress themes</a> over on our theme shop. We’re also blogging and wish to help our users find the best <a href="https://www.machothemes.com/blog/cheap-wordpress-hosting/" target="_blank" title="Cheap WordPress Hosting">Cheap WordPress hosting</a>.
@@ -123,6 +127,13 @@ Or you can give back by recommending this amazing plugin to your friends!
 14. Plugin options page, simple view (v1.2)
 
 == Changelog ==
+
+= 2.3.0 =
+* Added Elementor widget
+* Added Gutenberg block
+* Added a widget
+* Added telegram icon
+* Added custom biography
 
 = 2.2.2 =
 * Added schema.org tags.
