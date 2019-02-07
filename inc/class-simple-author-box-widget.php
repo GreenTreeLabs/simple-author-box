@@ -11,7 +11,7 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
 
         $defaults = array(
             'title'  => __('About Author', 'saboxplugin'),
-            'author' => 'auto',
+            'authors' => 'auto',
         );
 
         $this->defaults = $defaults;
@@ -23,18 +23,25 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
         global $post;
 
         extract($args);
-        $instance        = wp_parse_args((array)$instance, $this->defaults);
-        $sabox_author_id = $post->post_author;
-        echo '<p>' . $instance['title'] . '</p>';
+        $instance      = wp_parse_args((array)$instance, $this->defaults);
         $sabox_options = Simple_Author_Box_Helper::get_option('saboxplugin_options');
-        include SIMPLE_AUTHOR_BOX_PATH . 'template/template-sab.php';
+        $template      = Simple_Author_Box_Helper::get_template();
+        if ('auto' != $instance['authors']) {
+            $sabox_author_id = $instance['authors'];
+            echo '<p>' . $instance['title'] . '</p>';
+            include($template);
+        } else {
+            $sabox_author_id = $post->post_author;
+            echo '<p>' . $instance['title'] . '</p>';
+            include($template);
+        }
 
     }
 
     function update($new_instance, $old_instance) {
         $instance                = $old_instance;
         $instance['title']       = strip_tags($new_instance['title']);
-        $instance['author']      = absint($new_instance['author']);
+        $instance['authors']      = absint($new_instance['authors']);
 
         return $instance;
     }
@@ -50,13 +57,13 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
         </p>
         <p>
             <?php $authors = get_users(); ?>
-            <label for="<?php echo $this->get_field_id('author'); ?>"><?php echo esc_html__('Choose author/user', 'saboxplugin'); ?>
+            <label for="<?php echo $this->get_field_id('authors'); ?>"><?php echo esc_html__('Choose author/user', 'saboxplugin'); ?>
                 :</label>
-            <select name="<?php echo $this->get_field_name('author'); ?>"
-                    id="<?php echo $this->get_field_id('author'); ?>" class="widefat">
+            <select name="<?php echo $this->get_field_name('authors'); ?>"
+                    id="<?php echo $this->get_field_id('authors'); ?>" class="widefat">
                 <option value="auto" ><?php echo esc_html__('Autodetect', 'saboxplugin'); ?></option>
                 <?php foreach ($authors as $author) : ?>
-                    <option value="<?php echo $author->ID; ?>" <?php selected($author->ID, $instance['author']); ?>><?php echo $author->data->user_login; ?></option>
+                    <option value="<?php echo $author->ID; ?>" <?php selected($author->ID, $instance['authors']); ?>><?php echo $author->data->user_login; ?></option>
                 <?php endforeach; ?>
             </select>
         </p>

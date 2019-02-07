@@ -23,16 +23,6 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 	$sab_web_rel = '';
 }
 
-// widget condition
-if(isset($instance)){
-    if( isset($instance['author']) &&  $instance['author'] != 0 ){
-        $sabox_author_id = $instance['author'];
-    } else {
-        $obj = get_queried_object();
-        $sabox_author_id = $obj->post_author;
-    }
-}
-
 $sab_author_link = sprintf( '<a href="%s" class="vcard author" rel="author" itemprop="url"><span class="fn" itemprop="name">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
 if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
