@@ -2,7 +2,7 @@
 /**
 * Plugin Name: 				Simple Author Box
 * Description: 				Adds a responsive author box with social icons on your posts.
-* Version: 					2.2.2
+* Version: 					2.3.0
 * Author: 					MachoThemes
 * Author URI: 				https://www.machothemes.com/
 * Requires: 				4.6 or higher
