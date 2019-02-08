@@ -1,6 +1,6 @@
 === Simple Author Box ===
 Contributors: machothemes, silkalns
-Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, user profile, post author, rtl author box, amp, accelerated mobile pages
+Tags: author box, responsive author box, author profile fields, author social icons, profile fields, author bio, author description, author profile, post author, rtl author box, amp, accelerated mobile pages
 Requires at least: 4.6
 Requires PHP: 5.6
 Stable tag: 2.3.0
@@ -11,6 +11,8 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Adds a cool responsive author box with social icons on your posts.
 
 == Description ==
+
+**Simple Author Box** is a standalone plugin built, maintained & operated by the friendly folks over at [MachoThemes](https://www.machothemes.com/)
 
 **Simple Author Box** adds a responsive author box at the end of your posts, showing the author name, author gravatar and author description. It also adds over 30 social profile fields on WordPress user profile screen, allowing to display the author social icons.
 
@@ -76,7 +78,7 @@ The PRO version of Simple Author Box fixes this.
 
 = Is there any widget in Simple Author Box ? =
 
-No, but we have two awesome widgets in the PRO version.
+Yes, but we also have two awesome widgets in the PRO version.
 
 = I have two author boxes. How can I hide one? =
 
