@@ -25,7 +25,9 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 
 $sab_author_link = sprintf( '<a href="%s" class="vcard author" rel="author" itemprop="url"><span class="fn" itemprop="name">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
-if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
+	$author_description = apply_filters( 'sab_user_description', get_the_author_meta( 'description' ), $sabox_author_id );
+
+if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
 
 	$show_guest_only = ( get_post_meta( get_the_ID(), '_disable_sab_author_here', true ) ) ? get_post_meta( get_the_ID(), '_disable_sab_author_here', true ) : "false";
 
@@ -47,8 +49,6 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		echo '</div>';
 
 		// author box name
-
-
 		echo '<div class="saboxplugin-authorname">';
 		echo apply_filters( 'sabox_author_html', $sab_author_link, $sabox_options, $sabox_author_id );
 		if ( is_user_logged_in() && get_current_user_id() == $sabox_author_id ) {
@@ -59,15 +59,10 @@ if ( get_the_author_meta( 'description' ) != '' || '0' == $sabox_options['sab_no
 		// author box description
 		echo '<div class="saboxplugin-desc">';
 		echo '<div itemprop="description">';
-		if( isset($sabox_options['sabox_author_different_description']) && '0' == $sabox_options['sabox_author_different_description']){
-            $description = get_the_author_meta( 'description', $sabox_author_id );
-        } else {
-            $description = get_the_author_meta( 'sabox_author_different_description', $sabox_author_id );
-        }
 
-		$description = wptexturize( $description );
-		$description = wpautop( $description );
-		echo wp_kses_post( $description );
+		$author_description = wptexturize( $author_description );
+		$author_description = wpautop( $author_description );
+		echo wp_kses_post( $author_description );
 		if ( $description == "" && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
 			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#wp-description-wrap">' . esc_html__( 'Add Biographical Info', 'saboxplugin' ) . '</a>';
 		}

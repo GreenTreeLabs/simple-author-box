@@ -8,13 +8,6 @@ class Simple_Author_Box_User_Profile {
         add_action('show_user_profile', array($this, 'add_social_area'));
         add_action('edit_user_profile', array($this, 'add_social_area'));
 
-        // Author page description
-        if (isset($sabox_options['sabox_author_different_description']) && $sabox_options['sabox_author_different_description'] == '1') {
-            add_action('show_user_profile', array($this, 'author_page_text'));
-            add_action('edit_user_profile', array($this, 'author_page_text'));
-        }
-
-
         // Custom Profile Image
         add_action('show_user_profile', array($this, 'add_profile_image'), 9, 1);
         add_action('edit_user_profile', array($this, 'add_profile_image'), 9, 1);
@@ -133,29 +126,6 @@ class Simple_Author_Box_User_Profile {
         <?php
     }
 
-
-    // User description for author page.
-    public function author_page_text($user) {
-
-        $author_page_description = get_user_meta($user->ID, 'sabox_author_different_description', true);
-
-        ?>
-        <div id="sabox-custom-profile-image">
-            <h3><?php esc_html_e('Author page user description (Simple Author Box)', 'saboxplugin'); ?></h3>
-            <table class="form-table">
-                <tr>
-                    <th><label for="cupp_meta"><?php esc_html_e('Custom Biography', 'saboxplugin'); ?></label></th>
-                    <td>
-                        <textarea id="sabox_author_different_description" class="sab-editor" name="sabox_author_different_description"><?php echo wp_kses_post($author_page_description); ?></textarea>
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-
-        <?php
-    }
-
     public function save_user_profile($user_id) {
 
         if (isset($_POST['sabox-social-icons']) && isset($_POST['sabox-social-links'])) {
@@ -208,13 +178,6 @@ class Simple_Author_Box_User_Profile {
         } else {
             delete_user_meta($user_id, 'sabox-profile-image');
         }
-
-        if (isset($_POST['sabox_author_different_description']) && '' != $_POST['sabox_author_different_description']) {
-            update_user_meta($user_id, 'sabox_author_different_description', wp_filter_post_kses( $_POST['sabox_author_different_description'] ) );
-        } else {
-            delete_user_meta($user_id, 'sabox_author_different_description');
-        }
-
 
     }
 

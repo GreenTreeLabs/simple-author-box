@@ -875,7 +875,6 @@ class Simple_Author_Box_Helper {
 		        'sab_box_author_p_color' => '',
 		        'sab_box_author_a_color' => '0',
 		        'sab_box_icons_color'    => '0',
-                'sabox_author_different_description' => '0',
                 'sab_footer_inline_style' => '0',
 		    ),
 		    'sab_box_margin_top'         => '0',
