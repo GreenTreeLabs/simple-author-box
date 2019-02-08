@@ -63,7 +63,7 @@ if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) 
 		$author_description = wptexturize( $author_description );
 		$author_description = wpautop( $author_description );
 		echo wp_kses_post( $author_description );
-		if ( $description == "" && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
+		if ( '' == $author_description && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
 			echo '<a target="_blank" href="' . admin_url() . 'profile.php?#wp-description-wrap">' . esc_html__( 'Add Biographical Info', 'saboxplugin' ) . '</a>';
 		}
 		echo '</div>';
