@@ -3,7 +3,6 @@
 * Added Gutenberg block
 * Added a widget
 * Added telegram icon
-* Added custom biography
 
 = 2.2.2 =
 * Added schema.org tags.
