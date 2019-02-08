@@ -59,7 +59,6 @@ class Simple_Author_Box_Admin_Page {
 					'type'        => 'toggle',
 					'group'       => 'saboxplugin_options',
 				),
-
 				'sab_email'        => array(
 					'label'       => __( 'Show author email', 'saboxplugin' ),
 					'description' => __( 'When turned ON, the plugin will add an email option next to the social icons.', 'saboxplugin' ),

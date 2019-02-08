@@ -47,14 +47,14 @@ class Simple_Author_Box {
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-social.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-helper.php';
 		require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/functions.php';
-    require_once SIMPLE_AUTHOR_BOX_PATH . '/inc/elementor/class-simple-author-box-elementor-check.php';
-    require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-widget.php';
+    	require_once SIMPLE_AUTHOR_BOX_PATH . '/inc/elementor/class-simple-author-box-elementor-check.php';
+    	require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-widget.php';
 
-		if ( ! defined( 'SIMPLE_AUTHOR_BOX_PRO_VERSION' ) ) {
+		if ( apply_filters( 'sabox_remove_lite_block', true ) ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-block.php';
 		}
     
-    // everything below this line gets loaded only in the admin back-end
+    	// everything below this line gets loaded only in the admin back-end
 		if ( is_admin() ) {
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-admin-page.php';
 			require_once SIMPLE_AUTHOR_BOX_PATH . 'inc/class-simple-author-box-user-profile.php';

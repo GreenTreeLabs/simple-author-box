@@ -100,7 +100,7 @@ class Simple_Author_Box_Block {
 
 	public function get_author() {
 
-		$author_id = $_POST['author_ID'];
+		$author_id = absint($_POST['author_ID']);
 		$nonce     = $_POST['nonce'];
 
 		if ( ! wp_verify_nonce( $nonce, 'sab_nonce' ) ) {

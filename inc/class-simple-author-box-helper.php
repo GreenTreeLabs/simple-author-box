@@ -854,6 +854,8 @@ class Simple_Author_Box_Helper {
 		        'sab_email'              => '0',
 		        'sab_link_target'        => '0',
 		        'sab_hide_socials'       => '0',
+		        'sab_hide_on_archive'    => '0',
+		        'sab_box_border_width'   => '1',
 		        'sab_avatar_style'       => '0',
 		        'sab_avatar_hover'       => '0',
 		        'sab_web'                => '0',
@@ -873,9 +875,8 @@ class Simple_Author_Box_Helper {
 		        'sab_box_author_p_color' => '',
 		        'sab_box_author_a_color' => '0',
 		        'sab_box_icons_color'    => '0',
-		        'sab_box_border_width'   => '1',
-		        'sab_hide_on_archive'    => '0',
                 'sabox_author_different_description' => '0',
+                'sab_footer_inline_style' => '0',
 		    ),
 		    'sab_box_margin_top'         => '0',
 		    'sab_box_margin_bottom'      => '0',
@@ -890,7 +891,7 @@ class Simple_Author_Box_Helper {
 		    'sab_box_desc_size'          => '14',
 		    'sab_box_icon_size'          => '18',
 		    'sab_desc_style'             => '0',
-		    'sab_footer_inline_style'    => '0',
+		    
 		) );
 
 		if ( 'saboxplugin_options' == $key ) {
