@@ -7,8 +7,8 @@ const CssEntryPlugin            = require('css-entry-webpack-plugin');
 
 const config = {
 	entry: {
-		sab_gutenberg_editor_script: './src/js/sab_gutenberg_editor_script.js',
-		sab_gutenberg_editor_style: './src/scss/sab_gutenberg_editor_style.scss',
+		sab_gutenberg_editor_script: './assets/src/js/sab_gutenberg_editor_script.js',
+		sab_gutenberg_editor_style: './assets/src/scss/sab_gutenberg_editor_style.scss',
 	},
 	output: {
 		filename: 'js/[name].js',
