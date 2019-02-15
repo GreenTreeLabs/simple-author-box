@@ -4,7 +4,7 @@ Tags: author box, responsive author box, author profile fields, author social ic
 Requires at least: 4.6
 Requires PHP: 5.6
 Stable tag: 2.3.0
-Tested up to: 5.0
+Tested up to: 5.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
