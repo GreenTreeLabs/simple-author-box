@@ -23,6 +23,12 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 	$sab_web_rel = '';
 }
 
+if ( isset( $sabox_options['align'] ) ) {
+	$align = 'align' . $sabox_options['align'];
+} else {
+	$align = '';
+}
+
 $sab_author_link = sprintf( '<a href="%s" class="vcard author" rel="author" itemprop="url"><span class="fn" itemprop="name">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
 	$author_description = apply_filters( 'sab_user_description', get_the_author_meta( 'description' ), $sabox_author_id );
@@ -33,7 +39,7 @@ if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) 
 
 	if ( $show_guest_only != "on" ) {
 
-		echo '<div class="saboxplugin-wrap" itemtype="http://schema.org/Person" itemscope itemprop="author">'; // start saboxplugin-wrap div
+		echo '<div ' . ( isset( $sabox_wrap_id ) ? 'id="saboxplugin-wrap-' . esc_attr( $sabox_wrap_id ) . '"' : '' ) . ' class="saboxplugin-wrap ' . $align . '" itemtype="http://schema.org/Person" itemscope itemprop="author">'; // start saboxplugin-wrap div
 
 		// author box gravatar
 		echo '<div class="saboxplugin-gravatar">';
@@ -125,7 +131,7 @@ if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) 
 				}
 
 				if ( ! empty( $social_link ) ) {
-					echo Simple_Author_Box_Helper::get_sabox_social_icon( $social_link, $social_platform );
+					echo Simple_Author_Box_Helper::get_sabox_social_icon( $social_link, $social_platform, $sabox_options );
 				}
 			}
 
