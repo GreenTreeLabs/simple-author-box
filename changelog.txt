@@ -1,3 +1,6 @@
+= 2.3.1 =
+* Improved widget - added display name alongside username
+
 = 2.3.0 =
 * Added Elementor widget
 * Added Gutenberg block
