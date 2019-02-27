@@ -69,7 +69,7 @@ class Simple_Author_Box_Widget_LITE extends WP_Widget {
                     id="<?php echo esc_attr($this->get_field_id('authors')); ?>" class="widefat">
                 <option value="auto" ><?php esc_html_e('Autodetect', 'saboxplugin'); ?></option>
                 <?php foreach ($authors as $author) : ?>
-                    <option value="<?php echo absint($author->ID); ?>" <?php selected($author->ID, $instance['authors']); ?>><?php echo esc_html($author->data->user_login); ?></option>
+                    <option value="<?php echo absint($author->ID); ?>" <?php selected($author->ID, $instance['authors']); ?>><?php echo  esc_html($author->data->display_name) . ' ('. esc_html($author->data->user_login) .')'; ?></option>
                 <?php endforeach; ?>
             </select>
         </p>
