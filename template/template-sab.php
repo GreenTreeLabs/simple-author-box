@@ -25,7 +25,7 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 
 $sab_author_link = sprintf( '<a href="%s" class="vcard author" rel="author" itemprop="url"><span class="fn" itemprop="name">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
-	$author_description = apply_filters( 'sab_user_description', get_the_author_meta( 'description' ), $sabox_author_id );
+	$author_description = apply_filters( 'sab_user_description', get_the_author_meta( 'description' ,$sabox_author_id), $sabox_author_id );
 
 if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
 
