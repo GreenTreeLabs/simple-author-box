@@ -1,9 +1,12 @@
 = 2.3.1 =
 * Improved widget - added display name alongside username
-* Removed required array parameter for plugin settings link
 * Fixed telegram symbol color changing
 * Fixed telegram display in Gutenberg block
 * Fixed avatar/gravatar circle/square functionality
+* Fix for author name color change when link set to none
+* Fix for plugin settings link
+* Fix for author description display
+
 
 = 2.3.0 =
 * Added Elementor widget
