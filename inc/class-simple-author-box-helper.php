@@ -999,7 +999,7 @@ class Simple_Author_Box_Helper {
 		}
 		// Author name color
 		if ( '' != $sabox_options['sab_box_author_color'] ) {
-			$style .= '.saboxplugin-wrap .saboxplugin-authorname a {color:' . esc_html( $sabox_options['sab_box_author_color'] ) . ';}';
+			$style .= '.saboxplugin-wrap .saboxplugin-authorname a,.saboxplugin-wrap .saboxplugin-authorname span {color:' . esc_html( $sabox_options['sab_box_author_color'] ) . ';}';
 		}
 
 		// Author web color
