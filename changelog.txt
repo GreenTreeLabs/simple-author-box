@@ -1,5 +1,7 @@
 = 2.3.1 =
 * Improved widget - added display name alongside username
+* Removed required array parameter for plugin settings link
+* Fixed telegram symbol color changing
 
 = 2.3.0 =
 * Added Elementor widget
