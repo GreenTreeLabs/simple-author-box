@@ -1,23 +1,23 @@
 <?php
-if ( '1' == $sabox_options['sab_colored'] ) {
+if ( isset($sabox_options['sab_colored']) && '1' == $sabox_options['sab_colored'] ) {
 	$sabox_color = 'sabox-colored';
 } else {
 	$sabox_color = '';
 }
 
-if ( '0' != $sabox_options['sab_web_position'] ) {
+if ( isset($sabox_options['sab_web_position'] ) && '0' != $sabox_options['sab_web_position'] ) {
 	$sab_web_align = 'sab-web-position';
 } else {
 	$sab_web_align = '';
 }
 
-if ( '1' == $sabox_options['sab_web_target'] ) {
+if ( isset($sabox_options['sab_web_target']) && '1' == $sabox_options['sab_web_target'] ) {
 	$sab_web_target = '_blank';
 } else {
 	$sab_web_target = '_self';
 }
 
-if ( '1' == $sabox_options['sab_web_rel'] ) {
+if ( isset($sabox_options['sab_web_rel'] ) && '1' == $sabox_options['sab_web_rel'] ) {
 	$sab_web_rel = 'rel="nofollow"';
 } else {
 	$sab_web_rel = '';
@@ -25,9 +25,9 @@ if ( '1' == $sabox_options['sab_web_rel'] ) {
 
 $sab_author_link = sprintf( '<a href="%s" class="vcard author" rel="author" itemprop="url"><span class="fn" itemprop="name">%s</span></a>', esc_url( get_author_posts_url( $sabox_author_id ) ), esc_html( get_the_author_meta( 'display_name', $sabox_author_id ) ) );
 
-	$author_description = apply_filters( 'sab_user_description', get_the_author_meta( 'description' ), $sabox_author_id );
+	$author_description = apply_filters( 'sab_user_description', get_the_author_meta( 'description' ,$sabox_author_id), $sabox_author_id );
 
-if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
+if ( '' != $author_description || isset($sabox_options['sab_no_description'] ) && '0' == $sabox_options['sab_no_description'] ) { // hide the author box if no description is provided
 
 	$show_guest_only = ( get_post_meta( get_the_ID(), '_disable_sab_author_here', true ) ) ? get_post_meta( get_the_ID(), '_disable_sab_author_here', true ) : "false";
 
@@ -100,7 +100,7 @@ if ( '' != $author_description || '0' == $sabox_options['sab_no_description'] ) 
 			echo '</div>';
 		}
 
-		$show_email   = '0' == $sabox_options['sab_email'] ? false : true;
+		$show_email   = isset($sabox_options['sab_email'] ) && '0' == $sabox_options['sab_email'] ? false : true;
 		$social_links = Simple_Author_Box_Helper::get_user_social_links( $sabox_author_id, $show_email );
 
 		if ( empty( $social_links ) && is_user_logged_in() && $sabox_author_id == get_current_user_id() ) {
