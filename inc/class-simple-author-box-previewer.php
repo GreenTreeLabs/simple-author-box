@@ -110,7 +110,7 @@ class Simple_Author_Box_Previewer {
 		// author box clearfix
 		echo '<div class="clearfix"></div>';
 
-		$social_links               = Simple_Author_Box_Helper::$social_icons;
+		$social_links               = apply_filters('sabox_social_icons',Simple_Author_Box_Helper::$social_icons);
 		$social_links['user_email'] = '#';
 
 		$extra_class = ' sab-show-simple';
