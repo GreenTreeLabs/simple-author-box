@@ -1291,9 +1291,9 @@ var SAB_Social_Icon = function () {
                     return React.createElement(
                         'svg',
                         { version: '1.1', 'class': 'sab-' + icon, viewBox: '0 0 500 500.7', xmlns: 'http://www.w3.org/2000/svg' },
-                        React.createElement('rect', { 'class': 'st0', x: '-0.9', y: '0.2', width: '500', height: '500', fill: '#0088cc' }),
-                        React.createElement('polygon', { 'class': 'st1', points: '500.5 342.9 500.5 500.4 351.4 500.4 222 369.3 210 272.3 173.4 234.9 272.5 116.9' }),
-                        React.createElement('path', { 'class': 'st2', d: 'm331.8 372.1c-7.4 7.9-27.1 17.2-52.9 17.2-65.6 0-79.8-48.2-79.8-76.3v-78.2h-25.8c-3 0-5.4-2.4-5.4-5.4v-36.9c0-3.9 2.4-7.4 6.1-8.7 33.7-11.8 44.2-41.3 45.8-63.6 0.4-6 3.5-8.8 8.7-8.8h38.5c3 0 5.4 2.4 5.4 5.4v62.5h45c3 0 5.4 2.4 5.4 5.4v44.3c0 3-2.4 5.4-5.4 5.4h-45.3v72.3c0 18.6 12.9 29.1 36.9 19.4 2.6-1 4.9-1.7 6.9-1.2 1.9 0.5 3.1 1.8 4 4.3l11.9 34.9c1.2 2.9 2 5.9 0 8z' })
+                        React.createElement('rect', { 'class': 'st0', x: '.5', y: '.2', width: '500', height: '500', fill: '#1da1f2' }),
+                        React.createElement('polygon', { 'class': 'st1', points: '499.1,249.6 499.1,500.2 298.1,500.2 106.9,258.9 104,255.2 392.5,146.2 392.5,146.2 ' }),
+                        React.createElement('path', { 'class': 'st2', d: 'M393.8,162.6l-43.9,207.1c-3.3,14.6-12,18.3-24.2,11.4l-66.9-49.3l-32.3,31.1c-3.6,3.6-6.6,6.6-13.5,6.6 l4.8-68.2l124-112.1c5.4-4.8-1.2-7.5-8.4-2.7l-153.3,96.6l-66-20.7c-14.4-4.5-14.6-14.4,3-21.2l258.2-99.5 C387.2,137.2,397.7,144.4,393.8,162.6z' })
                     );
                     break;
 				case 'tumblr':
@@ -1306,13 +1306,14 @@ var SAB_Social_Icon = function () {
 					);
 					break;
 				case 'twitter':
-					return React.createElement(
-						'svg',
-						{ version: '1.1', 'class': 'sab-' + icon, viewBox: '0 0 500 500.7', xmlns: 'http://www.w3.org/2000/svg' },
-						React.createElement('rect', { 'class': 'st0', x: '.5', y: '.2', width: '500', height: '500', fill: '#1da1f2' }),
-						React.createElement('polygon', { 'class': 'st1', points: '499.1,249.6 499.1,500.2 298.1,500.2 106.9,258.9 104,255.2 392.5,146.2 392.5,146.2 ' }),
-						React.createElement('path', { 'class': 'st2', d: 'M393.8,162.6l-43.9,207.1c-3.3,14.6-12,18.3-24.2,11.4l-66.9-49.3l-32.3,31.1c-3.6,3.6-6.6,6.6-13.5,6.6 l4.8-68.2l124-112.1c5.4-4.8-1.2-7.5-8.4-2.7l-153.3,96.6l-66-20.7c-14.4-4.5-14.6-14.4,3-21.2l258.2-99.5 C387.2,137.2,397.7,144.4,393.8,162.6z' })
-					);
+                    return React.createElement(
+                        'svg',
+                        { version: '1.1', 'class': 'sab-' + icon, viewBox: '0 0 500 500.7', xmlns: 'http://www.w3.org/2000/svg' },
+                        React.createElement('rect', { 'class': 'st0', x: '-0.9', y: '0.2', width: '500', height: '500', fill: '#0088cc' }),
+                        React.createElement('polygon', { 'class': 'st1', points: '500.5 342.9 500.5 500.4 351.4 500.4 222 369.3 210 272.3 173.4 234.9 272.5 116.9' }),
+                        React.createElement('path', { 'class': 'st2', d: 'm331.8 372.1c-7.4 7.9-27.1 17.2-52.9 17.2-65.6 0-79.8-48.2-79.8-76.3v-78.2h-25.8c-3 0-5.4-2.4-5.4-5.4v-36.9c0-3.9 2.4-7.4 6.1-8.7 33.7-11.8 44.2-41.3 45.8-63.6 0.4-6 3.5-8.8 8.7-8.8h38.5c3 0 5.4 2.4 5.4 5.4v62.5h45c3 0 5.4 2.4 5.4 5.4v44.3c0 3-2.4 5.4-5.4 5.4h-45.3v72.3c0 18.6 12.9 29.1 36.9 19.4 2.6-1 4.9-1.7 6.9-1.2 1.9 0.5 3.1 1.8 4 4.3l11.9 34.9c1.2 2.9 2 5.9 0 8z' })
+                    );
+
 					break;
 				case 'vimeo':
 					return React.createElement(
