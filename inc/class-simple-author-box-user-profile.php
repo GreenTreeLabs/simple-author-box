@@ -18,15 +18,16 @@ class Simple_Author_Box_User_Profile {
         // Allow HTML in user description.
         remove_filter('pre_user_description', 'wp_filter_kses');
         add_filter('pre_user_description', 'wp_kses_post');
-
     }
+
 
     public function add_social_area($profileuser) {
         $user_id = $profileuser->data->ID;
 
         $social_links = Simple_Author_Box_Helper::get_user_social_links($user_id);
         $social_icons = apply_filters('sabox_social_icons', Simple_Author_Box_Helper::$social_icons);
-        unset($social_icons['user_email']);
+
+	    unset($social_icons['user_email']);
 
         ?>
         <div class="sab-user-profile-wrapper">
