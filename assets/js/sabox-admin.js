@@ -128,6 +128,22 @@
 
         adminTabSwitching();
 
+        // Import users function
+        $('a.sab-ajax-button').click(function (e) {
+            e.preventDefault();
+            var action = $(this).data('action');
+            var post_type = $(this).data('post_type');
+            var data = {
+                'action': action,
+                'post_type': post_type
+            };
+
+            $.post(sabox_ajax.sabox_ajax_url, data, function (response) {
+                console.log(response);
+            });
+
+        });
+
     });
 
 })( jQuery );

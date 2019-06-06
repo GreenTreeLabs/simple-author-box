@@ -26,6 +26,9 @@ class Simple_Author_Box_Admin_Page {
 			'miscellaneous-options' => array(
 				'label' => __( 'Misc', 'saboxplugin' ),
 			),
+			'user-importer'         => array(
+				'label' => __( 'Import Users', 'saboxpro' ),
+			),
 			'upgrade-pro'           => array(
 				'label' => esc_html__( 'Upgrade', 'saboxplugin' ),
 				'link'  => admin_url( 'admin.php?page=sab-upgrade' ),
@@ -384,7 +387,19 @@ class Simple_Author_Box_Admin_Page {
 					'group'       => 'saboxplugin_options',
 				),
 			),
+
+			'user-importer' => array(
+				'import_cap_users' => array(
+					'label'       => __( 'Import users from Co-Authors plugin', 'saboxpro' ),
+					'description' => __( 'Import Users created by the Co-Author ( plus ) plugin', 'saboxpro' ),
+					'type'        => 'ajax_button',
+					'action'      => 'sab_import_users',
+					'post_type'   => 'guest-author'
+				)
+			),
+
 		);
+
 
 		$this->settings = apply_filters( 'sabox_admin_settings', $settings );
 		$this->sections = apply_filters( 'sabox_admin_sections', $default_sections );
