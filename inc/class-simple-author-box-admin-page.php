@@ -391,7 +391,7 @@ class Simple_Author_Box_Admin_Page {
 			'user-importer' => array(
 				'import_cap_users' => array(
 					'label'       => __( 'Import users from Co-Authors plugin', 'saboxpro' ),
-					'description' => __( 'Import Users created by the Co-Author ( plus ) plugin', 'saboxpro' ),
+					'description' => __( 'Import Users created by the Co-Authors Plus plugin. Please be patient, depending on how many users you have this can take a while. Please DO NOT leave this page if you started the import.', 'saboxpro' ),
 					'type'        => 'ajax_button',
 					'action'      => 'sab_import_users',
 					'post_type'   => 'guest-author'

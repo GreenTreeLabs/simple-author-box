@@ -60,7 +60,7 @@ class Simple_Author_Box_User_Importer {
 			echo __( 'Users have been imported', 'saboxplugin' );
 			wp_die();
 		} else {
-			echo __( 'No Co-Author users have been found', 'saboxplugin' );
+			echo __( 'No Co-Authors users have been found', 'saboxplugin' );
 			wp_die();
 		}
 
@@ -69,7 +69,7 @@ class Simple_Author_Box_User_Importer {
 
 	// Add new setting type
 	public function ajax_button_field( $field_name, $field ) {
-		$html = '<a href="#" class="sab-ajax-button button button-primary button-hero" data-post_type="' . $field['post_type'] . '" id="' . $field_name . '" data-action="' . $field['action'] . '" style="float:right;">' . esc_html__( 'Import', 'saboxpro' ) . '</a>';
+		$html = '<a href="#" class="sab-ajax-button button button-primary button-hero" data-importing_text ="'.esc_attr__('Importing users...','saboxplugin').'" data-post_type="' . $field['post_type'] . '" id="' . $field_name . '" data-action="' . $field['action'] . '" style="float:right;">' . esc_html__( 'Import', 'saboxpro' ) . '</a>';
 		echo $html;
 	}
 
