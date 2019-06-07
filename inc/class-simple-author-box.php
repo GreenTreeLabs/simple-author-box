@@ -232,9 +232,6 @@ class Simple_Author_Box {
 				'wp-color-picker',
 			), false, true
 			);
-			wp_localize_script('sabox-admin-js', 'sabox_ajax', array(
-				'sabox_ajax_url'                 => admin_url('admin-ajax.php'),
-			));
 
 			wp_enqueue_script(
 				'sabox-plugin-install', SIMPLE_AUTHOR_BOX_ASSETS . 'js/plugin-install.js', array(
