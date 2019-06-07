@@ -217,6 +217,8 @@ class Simple_Author_Box {
 		// globally loaded
 		wp_enqueue_style( 'sabox-css', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox.css' );
 		wp_enqueue_style( 'saboxplugin-admin-style', SIMPLE_AUTHOR_BOX_ASSETS . 'css/sabox-admin-style' . $suffix . '.css' );
+		// we need this enqueued globally so we can manage the notice
+		wp_enqueue_script('sabox-notice',SIMPLE_AUTHOR_BOX_ASSETS . 'js/sabox-notice.js',array('jquery'));
 
 		// loaded only on plugin page
 		if ( 'toplevel_page_simple-author-box-options' == $hook ) {

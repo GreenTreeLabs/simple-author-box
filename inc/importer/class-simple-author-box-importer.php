@@ -14,6 +14,7 @@ class Simple_Author_Box_User_Importer {
 		add_action( 'wp_ajax_hide_import_notice', array( $this, 'hide_import_notice' ) );
 
 		add_action( 'wp_loaded', array( $this, 'check_cap_users' ) );
+
 	}
 
 
@@ -53,7 +54,7 @@ class Simple_Author_Box_User_Importer {
 
 
 	public function check_cap_users() {
-		$sab_import     = get_transient( 'sab_import' );
+		$sab_import = get_transient( 'sab_import' );
 
 		// check to see if there is any info about Co-Authors Plus users
 		if ( true == $this->cap_plugin_users_exist() ) {
@@ -157,7 +158,7 @@ class Simple_Author_Box_User_Importer {
 	public function let_sab_import_users() {
 		?>
         <div class="notice is-dismissible" id="sab_import_notice">
-            <p><?php _e( 'Let <strong>Simple Author Box</strong> import <strong>Co-Authors Plus</strong> users for you', 'saboxplugin' ); ?>
+            <p><?php _e( 'Seems like you have Co-Authors Plus plugin installed. Let <strong>Simple Author Box</strong> import it\'s users for you.', 'saboxplugin' ); ?>
                 <a class="button button-primary"
                    href="<?php echo admin_url( 'admin.php?page=simple-author-box-options#user-importer' ) ?>"><?php _e( 'Take me to import page', 'saboxplugin' ) ?></a>
             </p>
@@ -171,8 +172,6 @@ class Simple_Author_Box_User_Importer {
 			set_transient( 'sab_import', 'true', 0 );
 		}
 	}
-
-
 }
 
 new Simple_Author_Box_User_Importer();
