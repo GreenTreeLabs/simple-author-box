@@ -7,7 +7,6 @@ class Simple_Author_Box_User_Importer {
 
 	function __construct() {
 		add_action( 'wp_ajax_sab_import_users', array( $this, 'trigger_import_users' ) );
-		add_action( 'sabox_field_ajax_button_output', array( $this, 'ajax_button_field' ), 10, 3 );
 	}
 
 
@@ -66,13 +65,6 @@ class Simple_Author_Box_User_Importer {
 
 
 	}
-
-	// Add new setting type
-	public function ajax_button_field( $field_name, $field ) {
-		$html = '<a href="#" class="sab-ajax-button button button-primary button-hero" data-importing_text ="'.esc_attr__('Importing users...','saboxplugin').'" data-post_type="' . $field['post_type'] . '" id="' . $field_name . '" data-action="' . $field['action'] . '" style="float:right;">' . esc_html__( 'Import', 'saboxpro' ) . '</a>';
-		echo $html;
-	}
-
 }
 
 new Simple_Author_Box_User_Importer();

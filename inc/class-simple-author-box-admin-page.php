@@ -27,7 +27,7 @@ class Simple_Author_Box_Admin_Page {
 				'label' => __( 'Misc', 'saboxplugin' ),
 			),
 			'user-importer'         => array(
-				'label' => __( 'Import Users', 'saboxpro' ),
+				'label' => __( 'Import Users', 'saboxplugin' ),
 			),
 			'upgrade-pro'           => array(
 				'label' => esc_html__( 'Upgrade', 'saboxplugin' ),
@@ -390,8 +390,8 @@ class Simple_Author_Box_Admin_Page {
 
 			'user-importer' => array(
 				'import_cap_users' => array(
-					'label'       => __( 'Import users from Co-Authors plugin', 'saboxpro' ),
-					'description' => __( 'Import Users created by the Co-Authors Plus plugin. Please be patient, depending on how many users you have this can take a while. Please DO NOT leave this page if you started the import.', 'saboxpro' ),
+					'label'       => __( 'Import users from Co-Authors plugin', 'saboxplugin' ),
+					'description' => __( 'Import Users created by the Co-Authors Plus plugin. Please be patient, depending on how many users you have this can take a while. Please DO NOT leave this page if you started the import.', 'saboxplugin' ),
 					'type'        => 'ajax_button',
 					'action'      => 'sab_import_users',
 					'post_type'   => 'guest-author'
@@ -776,6 +776,8 @@ class Simple_Author_Box_Admin_Page {
 				echo '</fieldset>';
 				echo '</div>';
 				break;
+			case 'ajax_button' :
+				echo '<a href="#" class="sab-ajax-button button button-primary button-hero" data-importing_text ="' . esc_attr__( 'Importing users...', 'saboxplugin' ) . '" data-post_type="' . $field['post_type'] . '" id="' . $field_name . '" data-action="' . $field['action'] . '" style="float:right;">' . esc_html__( 'Import', 'saboxplugin' ) . '</a>';
 			default:
 				do_action( "sabox_field_{$field['type']}_output", $field_name, $field );
 				break;
