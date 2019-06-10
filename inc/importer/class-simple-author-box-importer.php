@@ -10,10 +10,14 @@ class Simple_Author_Box_User_Importer {
 		add_filter( 'sabox_admin_settings', array( $this, 'add_new_setting' ), 10 );
 		add_filter( 'sabox_admin_sections', array( $this, 'add_new_section' ), 10 );
 
+		// Trigger the import
 		add_action( 'wp_ajax_sab_import_users', array( $this, 'trigger_import_users' ) );
+		// Hide admin notice
 		add_action( 'wp_ajax_hide_import_notice', array( $this, 'hide_import_notice' ) );
-
+		// Check if there are any Co-Authors Plus guest authros
 		add_action( 'wp_loaded', array( $this, 'check_cap_users' ) );
+		// Hook to show import section if there are guest author in the DB
+		add_action( 'admin_head', array( $this, 'import_users_section_display' ) );
 
 	}
 
@@ -28,6 +32,7 @@ class Simple_Author_Box_User_Importer {
 	public function add_new_section( $sections ) {
 		$sections['user-importer'] = array(
 			'label' => __( 'Import Users', 'saboxplugin' ),
+			'class' => 'hide'
 		);
 
 		return $sections;
@@ -158,7 +163,7 @@ class Simple_Author_Box_User_Importer {
 	public function let_sab_import_users() {
 		?>
         <div class="notice is-dismissible" id="sab_import_notice">
-            <p><?php _e( 'Seems like you have Co-Authors Plus plugin installed. Let <strong>Simple Author Box</strong> import it\'s users for you.', 'saboxplugin' ); ?>
+            <p><?php _e( 'Seems like you have Co-Authors Plus guest authors added to your database as custom post. Let <strong>Simple Author Box</strong> import them as users for you.', 'saboxplugin' ); ?>
                 <a class="button button-primary"
                    href="<?php echo admin_url( 'admin.php?page=simple-author-box-options#user-importer' ) ?>"><?php _e( 'Take me to import page', 'saboxplugin' ) ?></a>
             </p>
@@ -170,6 +175,17 @@ class Simple_Author_Box_User_Importer {
 		// User dismissed the notice, so we should hide it.
 		if ( isset( $_POST['action'] ) && 'hide_import_notice' == $_POST['action'] ) {
 			set_transient( 'sab_import', 'true', 0 );
+		}
+	}
+
+	/**
+	 *  Display import section if there are guest authors in the DB
+	 */
+	public function import_users_section_display() {
+		if ( true == $this->cap_plugin_users_exist() ) {
+			echo '<style>';
+			echo 'a[href="#user-importer"]{display:block !important;}';
+			echo '</style>';
 		}
 	}
 }

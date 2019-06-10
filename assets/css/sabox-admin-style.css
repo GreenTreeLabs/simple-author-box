@@ -308,6 +308,10 @@
 	color: #2e4453;
 }
 
+a[href="#user-importer"].hide{
+	display:none;
+}
+
 /* admin options page styling */
 .masthead {
 	text-align: center;
