@@ -81,8 +81,10 @@ class Simple_Author_Box_Helper {
 			}
 		}
 
+		$url = ('skype' != $icon_name) ? esc_url($url) : esc_attr($url);
+
 		$svg_icon = Simple_Author_Box_Social::icon_to_svg( $icon_name, $type );
-		return '<a target="' . esc_attr( $sabox_blank ) . '" href="' . esc_url( $url ) . '" rel="nofollow" class="' . esc_attr( $sab_color ) . '">' . $svg_icon . '</span></a>';
+		return '<a target="' . esc_attr( $sabox_blank ) . '" href="' .  $url . '" rel="nofollow" class="' . esc_attr( $sab_color ) . '">' . $svg_icon . '</span></a>';
 
 	}
 
