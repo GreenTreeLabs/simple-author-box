@@ -16,16 +16,8 @@ class Simple_Author_Box_Social {
 			$icon_svg = self::circle_long_shadow_icon( $icon );
 		}
 
-
-		$icon_svg = apply_filters( "sab_{$icon}_icon", $icon_svg );
-		if(has_filter("sab_{$icon}_extra_icon")){
-			$extra_icons = array(
-				'type' => $type,
-				'icon' => $icon
-			);
-			$icon_svg = apply_filters( "sab_{$icon}_extra_icon", $extra_icons );
-		}
-		$icon_svg = apply_filters( "sab_icon", $icon_svg );
+		$icon_svg = apply_filters( "sab_{$icon}_icon", $icon_svg, $type );
+		$icon_svg = apply_filters( "sab_icon", $icon_svg, $icon, $type );
 
 		return $icon_svg;
 
